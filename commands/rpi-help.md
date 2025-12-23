@@ -15,25 +15,29 @@ description: Quick reference for all RPI Workflow plugin commands and features
 
 ## Core Workflow
 
-### 1. Research
+### 1. Plan (includes research)
 ```
-/research_codebase [topic]           # Document codebase for a specific area
-/research_codebase_generic [topic]   # Generic research without thoughts/
-```
-
-### 2. Plan
-```
-/create_plan [ticket-path-or-description]   # Create implementation plan
-/iterate_plan [plan-path]                   # Refine existing plan
+/create_plan AW-123                   # Plan from Jira ticket (researches automatically)
+/create_plan "add logout button"      # Plan from description (researches automatically)
+/iterate_plan [plan-path]             # Refine existing plan
 ```
 
-### 3. Implement
+> **Note**: `/create_plan` has research built in - it spawns agents to analyze the codebase before creating the plan. No need to run research first!
+
+### 2. Implement
 ```
-/implement_plan [plan-path]    # Execute plan phase by phase
-/validate_plan [plan-path]     # Verify implementation against plan
+/implement_plan thoughts/shared/plans/xxx.md   # Execute plan phase by phase
+/validate_plan thoughts/shared/plans/xxx.md    # Verify implementation against plan
 ```
 
-> **Tip**: Run `/clear` between major steps (after research, after planning) to free up context for the next phase.
+> **Tip**: Run `/clear` between planning and implementation to free up context.
+
+### 3. Standalone Research (optional)
+Use these when you want to **understand** something without creating a plan:
+```
+/research_codebase "how does auth work"    # Creates doc in thoughts/shared/research/
+/research_codebase_generic "alert system"  # Research without thoughts directory
+```
 
 ---
 
