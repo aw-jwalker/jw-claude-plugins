@@ -2,6 +2,22 @@
 
 AssetWatch's Claude Code plugin for the **Research-Plan-Implement** workflow.
 
+## Quick Install
+
+```bash
+# Add the marketplace and install the plugin
+claude plugin marketplace add AssetWatch1/rpi-workflow
+claude plugin install rpi-workflow@rpi-workflow
+```
+
+Or from within Claude Code:
+```
+/plugin marketplace add AssetWatch1/rpi-workflow
+/plugin install rpi-workflow@rpi-workflow
+```
+
+---
+
 ## Current Status (WIP)
 
 This plugin was initialized on 2025-12-23. Here's what's been done and what still needs work:
