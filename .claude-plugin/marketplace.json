@@ -9,7 +9,7 @@
       "name": "rpi-wokflow",
       "source": "./plugins/rpi-workflow",
       "description": "adds commands for rpi workflow",
-      "version": "2.1.0",
+      "version": "1.0",
       "author": {
         "name": "assetwatch-engineering"
       }
