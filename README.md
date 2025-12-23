@@ -51,7 +51,17 @@ This plugin provides a structured workflow for software development:
 ### For Individual Use
 
 ```bash
-claude plugin install rpi-workflow --source github:AssetWatch1/rpi-workflow
+# First, add the plugin repository
+claude plugin marketplace add AssetWatch1/rpi-workflow
+
+# Then install the plugin
+claude plugin install rpi-workflow@rpi-workflow
+```
+
+Or use the shorthand within Claude Code:
+```
+/plugin marketplace add AssetWatch1/rpi-workflow
+/plugin install rpi-workflow@rpi-workflow
 ```
 
 ### For Team (via Project Settings)
@@ -60,7 +70,17 @@ Add to your project's `.claude/settings.json`:
 
 ```json
 {
-  "plugins": ["github:AssetWatch1/rpi-workflow"]
+  "extraKnownMarketplaces": {
+    "rpi-workflow": {
+      "source": {
+        "source": "github",
+        "repo": "AssetWatch1/rpi-workflow"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "rpi-workflow@rpi-workflow": true
+  }
 }
 ```
 
