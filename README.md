@@ -16,6 +16,27 @@ Or from within Claude Code:
 /plugin install rpi-workflow@rpi-workflow
 ```
 
+## Updating
+
+### Manual Update
+```bash
+# Refresh marketplace and update to latest version
+claude plugin marketplace update rpi-workflow
+```
+
+Or from within Claude Code:
+```
+/plugin marketplace update rpi-workflow
+```
+
+### Enable Auto-Updates (Recommended)
+1. Run `/plugin` to open the plugin manager
+2. Select the **Marketplaces** tab
+3. Select `rpi-workflow` marketplace
+4. Choose **Enable auto-update**
+
+With auto-update enabled, Claude Code will automatically check for and install updates at session start.
+
 ---
 
 ## Current Status (WIP)
