@@ -7,7 +7,10 @@
   "plugins": [
     {
       "name": "rpi-wokflow",
-      "source": "./plugins/rpi-workflow",
+      "source": {
+        "source": "github",
+        "repo": "AssetWatch1/rpi-workflow"
+      },
       "description": "adds commands for rpi workflow",
       "version": "1.0",
       "author": {
