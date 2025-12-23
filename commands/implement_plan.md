@@ -43,7 +43,10 @@ If you encounter a mismatch:
 ## Verification Approach
 
 After implementing a phase:
-- Run the success criteria checks (usually `make check test` covers everything)
+- Use the **test-runner** agent for verification (runs in isolated context, returns only summary)
+- Invoke with: `Use the test-runner agent to run all tests and summarize results`
+- The agent captures full output, analyzes thoroughly, but only returns a concise summary
+- This prevents context pollution while maintaining quality analysis
 - Fix any issues before proceeding
 - Update your progress in both the plan and your todos
 - Check off completed items in the plan file itself using Edit

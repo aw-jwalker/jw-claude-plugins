@@ -225,11 +225,12 @@ After structure approval:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Migration applies cleanly: `make migrate`
-- [ ] Unit tests pass: `make test-component`
-- [ ] Type checking passes: `npm run typecheck`
-- [ ] Linting passes: `make lint`
-- [ ] Integration tests pass: `make test-integration`
+Use the **test-runner** agent (runs in isolated context, returns summary only):
+`Use the test-runner agent to run all tests and summarize results`
+- [ ] Type checking passes
+- [ ] Linting passes
+- [ ] Unit tests pass
+- [ ] Build succeeds (if applicable)
 
 #### Manual Verification:
 - [ ] Feature works as expected when tested via UI
@@ -363,10 +364,13 @@ After structure approval:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Database migration runs successfully: `make migrate`
-- [ ] All unit tests pass: `go test ./...`
-- [ ] No linting errors: `golangci-lint run`
-- [ ] API endpoint returns 200: `curl localhost:8080/api/new-endpoint`
+Use the **test-runner** agent (runs in isolated context, returns summary only):
+`Use the test-runner agent to run all tests and summarize results`
+- [ ] Type checking passes
+- [ ] Linting passes
+- [ ] Unit tests pass
+- [ ] Build succeeds (if applicable)
+- [ ] Database migration runs (if applicable): `make migrate`
 
 #### Manual Verification:
 - [ ] New feature appears correctly in the UI

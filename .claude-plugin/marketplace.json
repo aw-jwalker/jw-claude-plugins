@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "AssetWatch's Research-Plan-Implement workflow plugin for Claude Code",
-    "version": "1.0.0"
+    "version": "1.4.0"
   },
   "plugins": [
     {
       "name": "rpi-workflow",
       "source": "./",
       "description": "AssetWatch Research-Plan-Implement workflow commands and agents",
-      "version": "1.0.0",
+      "version": "1.4.0",
       "author": {
         "name": "AssetWatch Engineering",
         "email": "jdevarennes@assetwatch.com"
