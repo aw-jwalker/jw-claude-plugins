@@ -1,5 +1,6 @@
 ---
 description: Debug issues by investigating logs, database state, and git history
+argument-hint: <"login fails after update" | "API returns 500 on /alerts">
 ---
 
 # Debug

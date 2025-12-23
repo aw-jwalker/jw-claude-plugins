@@ -1,5 +1,6 @@
 ---
 description: Create detailed implementation plans through interactive research and iteration
+argument-hint: <AW-123 | thoughts/shared/tickets/eng_123.md | "add logout button">
 model: opus
 ---
 

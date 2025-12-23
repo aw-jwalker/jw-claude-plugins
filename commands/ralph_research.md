@@ -1,5 +1,6 @@
 ---
 description: Research highest priority Jira ticket needing investigation
+argument-hint: <AW-123>
 ---
 
 ## PART I - IF A JIRA TICKET IS MENTIONED

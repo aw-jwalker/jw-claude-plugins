@@ -1,5 +1,6 @@
 ---
 description: Implement highest priority Jira ticket with implementation plan
+argument-hint: <AW-123>
 model: sonnet
 ---
 

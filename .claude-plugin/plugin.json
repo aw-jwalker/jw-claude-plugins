@@ -1,6 +1,6 @@
 {
   "name": "rpi-workflow",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "AssetWatch Research-Plan-Implement workflow commands and agents",
   "author": {
     "name": "AssetWatch Engineering"a   "email": "jdevarennes@assetwatch.com"

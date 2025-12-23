@@ -1,5 +1,6 @@
 ---
 description: Manage Jira tickets - create, update, comment, and follow workflow patterns
+argument-hint: <create | update AW-123 | comment AW-123>
 ---
 
 # Jira - Ticket Management

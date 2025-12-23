@@ -1,5 +1,6 @@
 ---
 description: Implement technical plans from thoughts/shared/plans with verification
+argument-hint: <thoughts/shared/plans/2025-01-01-feature.md>
 ---
 
 # Implement Plan

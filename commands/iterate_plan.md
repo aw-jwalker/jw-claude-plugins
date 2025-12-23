@@ -1,5 +1,6 @@
 ---
 description: Iterate on existing implementation plans with thorough research and updates
+argument-hint: <thoughts/shared/plans/2025-01-01-feature.md>
 model: opus
 ---
 

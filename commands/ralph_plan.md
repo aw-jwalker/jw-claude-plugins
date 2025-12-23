@@ -1,5 +1,6 @@
 ---
 description: Create implementation plan for highest priority Jira ticket ready for planning
+argument-hint: <AW-123>
 ---
 
 ## PART I - IF A TICKET IS MENTIONED

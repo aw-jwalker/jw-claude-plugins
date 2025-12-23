@@ -1,5 +1,6 @@
 ---
 description: Validate implementation against plan, verify success criteria, identify issues
+argument-hint: <thoughts/shared/plans/2025-01-01-feature.md>
 ---
 
 # Validate Plan

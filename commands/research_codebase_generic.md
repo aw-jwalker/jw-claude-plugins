@@ -1,5 +1,6 @@
 ---
 description: Research codebase comprehensively using parallel sub-agents
+argument-hint: <"how does authentication work" | "alert system architecture">
 model: opus
 ---
 

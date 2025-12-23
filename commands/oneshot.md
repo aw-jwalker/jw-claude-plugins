@@ -1,5 +1,6 @@
 ---
 description: Research ticket and launch planning session
+argument-hint: <AW-123>
 ---
 
 This command combines research and planning into a single workflow.

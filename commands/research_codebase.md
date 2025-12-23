@@ -1,5 +1,6 @@
 ---
 description: Document codebase as-is with thoughts directory for historical context
+argument-hint: <"how does authentication work" | "alert system architecture">
 model: opus
 ---
 

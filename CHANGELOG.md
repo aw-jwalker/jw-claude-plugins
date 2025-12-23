@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2025-12-23
+
+### Added
+- `/rpi-help` command: Quick reference for all plugin commands and features
+- `/rpi-quickstart` command: First-time setup and onboarding guide
+- `argument-hint` to all commands: Shows example arguments in autocomplete
+- Quick Reference section in README with core workflow examples
+
+### Changed
+- README now includes Quick Reference near top for easy access
+- Command hints show realistic examples (e.g., `<AW-123>`, `<thoughts/shared/plans/...>`)
+
 ## [1.4.0] - 2025-12-23
 
 ### Added

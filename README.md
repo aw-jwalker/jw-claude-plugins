@@ -37,6 +37,41 @@ Or from within Claude Code:
 
 With auto-update enabled, Claude Code will automatically check for and install updates at session start.
 
+## Quick Reference
+
+### Getting Started
+```
+/rpi-quickstart              # First-time setup guide
+/rpi-help                    # Quick reference (this info)
+```
+
+### Core Workflow
+```
+/research_codebase "topic"                    # Research codebase
+/create_plan AW-123                           # Create plan from ticket
+/create_plan "add logout button"              # Create plan from description
+```
+Then run `/clear` to free context, then:
+```
+/implement_plan thoughts/shared/plans/xxx.md  # Execute the plan
+```
+
+> **Tip**: Run `/clear` between research, planning, and implementation phases to keep context fresh.
+
+### Jira Workflow
+```
+/oneshot AW-123              # Research + Plan in one step
+/ralph_research AW-123       # Just research a ticket
+/ralph_plan AW-123           # Just create plan for ticket
+/ralph_impl AW-123           # Implement ticket with existing plan
+```
+
+### Testing (Context-Efficient)
+```
+Use the test-runner agent to run all tests and summarize results
+```
+This runs tests in a separate context and returns only a summary.
+
 ---
 
 ## Current Status (WIP)
