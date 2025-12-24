@@ -3,7 +3,8 @@
   "version": "1.5.0",
   "description": "AssetWatch Research-Plan-Implement workflow commands and agents",
   "author": {
-    "name": "AssetWatch Engineering"a   "email": "jdevarennes@assetwatch.com"
+    "name": "AssetWatch Engineering",
+    "email": "jdevarennes@assetwatch.com"
   },
   "repository": "https://github.com/AssetWatch1/rpi-workflow",
   "license": "MIT",
