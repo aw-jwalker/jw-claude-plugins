@@ -6,18 +6,18 @@ description: Quick reference for all RPI Workflow plugin commands and features
 
 ## Getting Started
 
-| Command | Description |
-|---------|-------------|
+| Command           | Description                           |
+| ----------------- | ------------------------------------- |
 | `/rpi-quickstart` | First-time setup and onboarding guide |
-| `/rpi-help` | This quick reference |
+| `/rpi-help`       | This quick reference                  |
 
 ---
 
 ## Core Workflow
 
 ### 1. Plan (includes research)
+
 ```
-/create_plan AW-123                   # Plan from Jira ticket (researches automatically)
 /create_plan "add logout button"      # Plan from description (researches automatically)
 /iterate_plan [plan-path]             # Refine existing plan
 ```
@@ -25,6 +25,7 @@ description: Quick reference for all RPI Workflow plugin commands and features
 > **Note**: `/create_plan` has research built in - it spawns agents to analyze the codebase before creating the plan. No need to run research first!
 
 ### 2. Implement
+
 ```
 /implement_plan thoughts/shared/plans/xxx.md   # Execute plan phase by phase
 /validate_plan thoughts/shared/plans/xxx.md    # Verify implementation against plan
@@ -33,23 +34,12 @@ description: Quick reference for all RPI Workflow plugin commands and features
 > **Tip**: Run `/clear` between planning and implementation to free up context.
 
 ### 3. Standalone Research (optional)
+
 Use these when you want to **understand** something without creating a plan:
+
 ```
 /research_codebase "how does auth work"    # Creates doc in thoughts/shared/research/
 /research_codebase_generic "alert system"  # Research without thoughts directory
-```
-
----
-
-## Jira Integration
-
-```
-/jira [action] [ticket]        # Manage Jira tickets (create, update, comment)
-/ralph_research [ticket]       # Research a specific ticket
-/ralph_plan [ticket]           # Create plan for a ticket
-/ralph_impl [ticket]           # Implement ticket with plan
-/oneshot [ticket]              # Research + Plan in one step
-/oneshot_plan [ticket]         # Plan + Implement in one step
 ```
 
 ---
@@ -90,15 +80,16 @@ This runs tests in an isolated context and returns only a summary, comparing aga
 
 Spawn these for parallel research:
 
-| Agent | Use For |
-|-------|---------|
-| `codebase-analyzer` | Understanding HOW code works |
-| `codebase-locator` | Finding WHERE code lives |
+| Agent                     | Use For                         |
+| ------------------------- | ------------------------------- |
+| `codebase-analyzer`       | Understanding HOW code works    |
+| `codebase-locator`        | Finding WHERE code lives        |
 | `codebase-pattern-finder` | Finding similar implementations |
-| `thoughts-analyzer` | Extracting insights from docs |
-| `web-search-researcher` | External research |
+| `thoughts-analyzer`       | Extracting insights from docs   |
+| `web-search-researcher`   | External research               |
 
 Example:
+
 ```
 Use the codebase-analyzer agent to understand how authentication works
 ```
@@ -108,6 +99,7 @@ Use the codebase-analyzer agent to understand how authentication works
 ## Directory Structure
 
 Plans and research are stored in:
+
 ```
 your-project/
 └── thoughts/
