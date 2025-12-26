@@ -8,6 +8,5 @@
   },
   "repository": "https://github.com/AssetWatch1/rpi-workflow",
   "license": "MIT",
-  "keywords": ["assetwatch", "workflow", "planning", "research"],
-  "hooks": "./hooks/hooks.json"
+  "keywords": ["assetwatch", "workflow", "planning", "research"]
 }
