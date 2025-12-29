@@ -39,7 +39,7 @@ When invoked with a parameter like `gh_username:branchName`:
 ## Example Usage
 
 ```
-/local_review samdickson22:sam/eng-1696-hotkey-for-yolo-mode
+rpi:local_review samdickson22:sam/eng-1696-hotkey-for-yolo-mode
 ```
 
 This will:

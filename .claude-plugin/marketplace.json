@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "AssetWatch's Claude Code plugins collection",
-    "version": "1.6.0"
+    "version": "2.0.0"
   },
   "plugins": [
     {
       "name": "rpi",
       "source": "./rpi",
       "description": "Research-Plan-Implement workflow commands and agents",
-      "version": "1.6.0",
+      "version": "2.0.0",
       "author": {
         "name": "AssetWatch Engineering",
         "email": "jdevarennes@assetwatch.com"

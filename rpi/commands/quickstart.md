@@ -12,9 +12,9 @@ Welcome to the **Research-Plan-Implement** workflow! This guide will get you up 
 
 You're already here, so the plugin is installed! To confirm, you should see these commands in `/help`:
 
-- `/create_plan`
-- `/implement_plan`
-- `/research_codebase`
+- `rpi:create_plan`
+- `rpi:implement_plan`
+- `rpi:research_codebase`
 
 ---
 
@@ -32,7 +32,7 @@ Keep your plugin up to date:
 ## Step 3: Try the Workflow
 
 ```
-/create_plan Add a logout button to the settings page
+rpi:create_plan Add a logout button to the settings page
 ```
 
 This will:
@@ -45,7 +45,7 @@ Then:
 
 ```
 /clear
-/implement_plan thoughts/shared/plans/[your-plan].md
+rpi:implement_plan thoughts/shared/plans/[your-plan].md
 ```
 
 > **Tip**: Run `/clear` between steps to free context for the next phase.
@@ -70,14 +70,14 @@ This runs tests in a separate context and shows only a summary with:
 
 ## Key Commands Cheat Sheet
 
-| Task              | Command                        |
-| ----------------- | ------------------------------ |
-| Get help          | `/rpi-help`                    |
-| Research codebase | `/research_codebase [topic]`   |
-| Create plan       | `/create_plan [description]`   |
-| Implement plan    | `/implement_plan [plan-path]`  |
-| Run tests         | `Use the test-runner agent...` |
-| Clear context     | `/clear`                       |
+| Task              | Command                            |
+| ----------------- | ---------------------------------- |
+| Get help          | `rpi:help`                         |
+| Research codebase | `rpi:research_codebase [topic]`    |
+| Create plan       | `rpi:create_plan [description]`    |
+| Implement plan    | `rpi:implement_plan [plan-path]`   |
+| Run tests         | `Use the test-runner agent...`     |
+| Clear context     | `/clear`                           |
 
 ---
 
@@ -96,18 +96,18 @@ This runs tests in a separate context and shows only a summary with:
 4. **Save your work** - Before ending a long session:
 
    ```
-   /create_handoff
+   rpi:create_handoff
    ```
 
 5. **Resume later** - Start a new session with:
    ```
-   /resume_handoff thoughts/shared/handoffs/[file].md
+   rpi:resume_handoff thoughts/shared/handoffs/[file].md
    ```
 
 ---
 
 ## Need Help?
 
-- **Quick reference**: `/rpi-help`
+- **Quick reference**: `rpi:help`
 - **Full docs**: https://github.com/AssetWatch1/assetwatch-claude-plugins
 - **Report issues**: https://github.com/AssetWatch1/assetwatch-claude-plugins/issues

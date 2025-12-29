@@ -6,10 +6,10 @@ description: Quick reference for all RPI Workflow plugin commands and features
 
 ## Getting Started
 
-| Command           | Description                           |
-| ----------------- | ------------------------------------- |
-| `/rpi-quickstart` | First-time setup and onboarding guide |
-| `/rpi-help`       | This quick reference                  |
+| Command          | Description                           |
+| ---------------- | ------------------------------------- |
+| `rpi:quickstart` | First-time setup and onboarding guide |
+| `rpi:help`       | This quick reference                  |
 
 ---
 
@@ -18,17 +18,17 @@ description: Quick reference for all RPI Workflow plugin commands and features
 ### 1. Plan (includes research)
 
 ```
-/create_plan "add logout button"      # Plan from description (researches automatically)
-/iterate_plan [plan-path]             # Refine existing plan
+rpi:create_plan "add logout button"      # Plan from description (researches automatically)
+rpi:iterate_plan [plan-path]             # Refine existing plan
 ```
 
-> **Note**: `/create_plan` has research built in - it spawns agents to analyze the codebase before creating the plan. No need to run research first!
+> **Note**: `rpi:create_plan` has research built in - it spawns agents to analyze the codebase before creating the plan. No need to run research first!
 
 ### 2. Implement
 
 ```
-/implement_plan thoughts/shared/plans/xxx.md   # Execute plan phase by phase
-/validate_plan thoughts/shared/plans/xxx.md    # Verify implementation against plan
+rpi:implement_plan thoughts/shared/plans/xxx.md   # Execute plan phase by phase
+rpi:validate_plan thoughts/shared/plans/xxx.md    # Verify implementation against plan
 ```
 
 > **Tip**: Run `/clear` between planning and implementation to free up context.
@@ -38,8 +38,8 @@ description: Quick reference for all RPI Workflow plugin commands and features
 Use these when you want to **understand** something without creating a plan:
 
 ```
-/research_codebase "how does auth work"    # Creates doc in thoughts/shared/research/
-/research_codebase_generic "alert system"  # Research without thoughts directory
+rpi:research_codebase "how does auth work"    # Creates doc in thoughts/shared/research/
+rpi:research_codebase_generic "alert system"  # Research without thoughts directory
 ```
 
 ---
@@ -47,9 +47,9 @@ Use these when you want to **understand** something without creating a plan:
 ## Git & PR
 
 ```
-/commit                    # Create commit with user approval
-/describe_pr               # Generate PR description
-/create_worktree [branch]  # Create worktree for parallel work
+rpi:commit                    # Create commit with user approval
+rpi:describe_pr               # Generate PR description
+rpi:create_worktree [branch]  # Create worktree for parallel work
 ```
 
 ---
@@ -57,9 +57,9 @@ Use these when you want to **understand** something without creating a plan:
 ## Session Management
 
 ```
-/create_handoff            # Save session state for later
-/resume_handoff [path]     # Resume from handoff document
-/debug [issue]             # Investigate issues via logs/git
+rpi:create_handoff            # Save session state for later
+rpi:resume_handoff [path]     # Resume from handoff document
+rpi:debug [issue]             # Investigate issues via logs/git
 ```
 
 ---
@@ -104,8 +104,8 @@ Plans and research are stored in:
 your-project/
 └── thoughts/
     └── shared/
-        ├── research/    # /research_codebase output
-        ├── plans/       # /create_plan output
+        ├── research/    # rpi:research_codebase output
+        ├── plans/       # rpi:create_plan output
         └── tickets/     # Ticket snapshots
 ```
 
@@ -114,4 +114,4 @@ your-project/
 ## Need More Help?
 
 - **Full documentation**: https://github.com/AssetWatch1/assetwatch-claude-plugins
-- **Quickstart guide**: `/rpi-quickstart`
+- **Quickstart guide**: `rpi:quickstart`
