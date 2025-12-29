@@ -1,27 +1,39 @@
 {
-  "name": "rpi-workflow",
+  "name": "assetwatch-claude-plugins",
   "owner": {
     "name": "AssetWatch Engineering",
     "email": "jdevarennes@assetwatch.com"
   },
   "metadata": {
-    "description": "AssetWatch's Research-Plan-Implement workflow plugin for Claude Code",
-    "version": "1.5.0"
+    "description": "AssetWatch's Claude Code plugins collection",
+    "version": "1.6.0"
   },
   "plugins": [
     {
-      "name": "rpi-workflow",
-      "source": "./",
-      "description": "AssetWatch Research-Plan-Implement workflow commands and agents",
-      "version": "1.5.0",
+      "name": "rpi",
+      "source": "./rpi",
+      "description": "Research-Plan-Implement workflow commands and agents",
+      "version": "1.6.0",
       "author": {
         "name": "AssetWatch Engineering",
         "email": "jdevarennes@assetwatch.com"
       },
-      "repository": "https://github.com/AssetWatch1/rpi-workflow",
+      "repository": "https://github.com/AssetWatch1/assetwatch-claude-plugins",
       "license": "MIT",
-      "keywords": ["assetwatch", "workflow", "planning", "research"],
-      "strict": true
+      "keywords": ["assetwatch", "workflow", "planning", "research"]
+    },
+    {
+      "name": "jira",
+      "source": "./jira",
+      "description": "Jira ticket workflow commands",
+      "version": "0.1.0",
+      "author": {
+        "name": "AssetWatch Engineering",
+        "email": "jdevarennes@assetwatch.com"
+      },
+      "repository": "https://github.com/AssetWatch1/assetwatch-claude-plugins",
+      "license": "MIT",
+      "keywords": ["assetwatch", "jira", "tickets", "workflow"]
     }
   ]
 }

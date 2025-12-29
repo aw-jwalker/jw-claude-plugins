@@ -24,7 +24,7 @@ Keep your plugin up to date:
 
 1. Run `/plugin` to open plugin manager
 2. Go to **Marketplaces** tab
-3. Select **rpi-workflow**
+3. Select **rpi**
 4. Choose **Enable auto-update**
 
 ---
@@ -109,5 +109,5 @@ This runs tests in a separate context and shows only a summary with:
 ## Need Help?
 
 - **Quick reference**: `/rpi-help`
-- **Full docs**: https://github.com/AssetWatch1/rpi-workflow
-- **Report issues**: https://github.com/AssetWatch1/rpi-workflow/issues
+- **Full docs**: https://github.com/AssetWatch1/assetwatch-claude-plugins
+- **Report issues**: https://github.com/AssetWatch1/assetwatch-claude-plugins/issues

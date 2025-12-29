@@ -113,5 +113,5 @@ your-project/
 
 ## Need More Help?
 
-- **Full documentation**: https://github.com/AssetWatch1/rpi-workflow
+- **Full documentation**: https://github.com/AssetWatch1/assetwatch-claude-plugins
 - **Quickstart guide**: `/rpi-quickstart`
