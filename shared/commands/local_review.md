@@ -15,7 +15,7 @@ When invoked with a parameter like `gh_username:branchName`:
    - If no parameter provided, ask for it in the format: `gh_username:branchName`
 
 2. **Extract ticket information**:
-   - Look for ticket numbers in the branch name (e.g., `eng-1696`, `ENG-1696`)
+   - Look for ticket numbers in the branch name (e.g., `iwa-1234`, `IWA-1234`)
    - Use this to create a short worktree directory name
    - If no ticket found, use a sanitized version of the branch name
 
