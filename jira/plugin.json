@@ -10,5 +10,11 @@
   "license": "MIT",
   "keywords": ["assetwatch", "jira", "tickets", "workflow"],
   "commands": ["./commands", "./shared/commands"],
-  "agents": ["./agents/", "./shared/agents/"]
+  "agents": [
+    "./shared/agents/test-runner.md",
+    "./shared/agents/web-search-researcher.md",
+    "./shared/agents/codebase-locator.md",
+    "./shared/agents/codebase-analyzer.md",
+    "./shared/agents/codebase-pattern-finder.md"
+  ]
 }

@@ -10,7 +10,15 @@
   "license": "MIT",
   "keywords": ["assetwatch", "workflow", "planning", "research"],
   "commands": ["./commands", "./shared/commands"],
-  "agents": ["./agents/", "./shared/agents/"],
+  "agents": [
+    "./agents/thoughts-analyzer.md",
+    "./agents/thoughts-locator.md",
+    "./shared/agents/test-runner.md",
+    "./shared/agents/web-search-researcher.md",
+    "./shared/agents/codebase-locator.md",
+    "./shared/agents/codebase-analyzer.md",
+    "./shared/agents/codebase-pattern-finder.md"
+  ],
   "hooks": "./hooks/hooks.json",
   "skills": ["./skills"]
 }
