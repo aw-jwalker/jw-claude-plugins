@@ -10,5 +10,5 @@
   "license": "MIT",
   "keywords": ["assetwatch", "jira", "tickets", "workflow"],
   "commands": ["./commands", "./shared/commands"],
-  "agents": ["./agents", "./shared/agents"]
+  "agents": ["./agents/", "./shared/agents/"]
 }

@@ -10,7 +10,7 @@
   "license": "MIT",
   "keywords": ["assetwatch", "workflow", "planning", "research"],
   "commands": ["./commands", "./shared/commands"],
-  "agents": ["./agents", "./shared/agents"],
-  "hooks": ["./hooks"],
+  "agents": ["./agents/", "./shared/agents/"],
+  "hooks": "./hooks/hooks.json",
   "skills": ["./skills"]
 }
