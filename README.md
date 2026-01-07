@@ -2,16 +2,22 @@
 
 AssetWatch's Claude Code plugin collection.
 
+## Requirements
+
+- **Claude Code CLI**: Update to latest version, this was tested on 2.0.76
+
 ## Available Plugins
 
-| Plugin | Description |
-| ------ | ----------- |
-| **rpi** | Research-Plan-Implement workflow for structured development |
-| **jira** | Jira ticket workflow commands (coming soon) |
+| Plugin   | Description                                                 |
+| -------- | ----------------------------------------------------------- |
+| **rpi**  | Research-Plan-Implement workflow for structured development |
+| **jira** | Jira ticket workflow commands (coming soon)                 |
 
 ---
 
-## Quick Install
+## Quick Install (CLI)
+
+From your terminal:
 
 ```bash
 # Add the marketplace
@@ -24,7 +30,9 @@ claude plugin install assetwatch-claude-plugins@rpi
 claude plugin install assetwatch-claude-plugins@jira
 ```
 
-Or from within Claude Code:
+## Quick Install (In-Session)
+
+Or from within an active Claude Code session:
 
 ```
 /plugin marketplace add AssetWatch1/assetwatch-claude-plugins
@@ -86,28 +94,28 @@ This runs tests in a separate context and returns only a summary.
 
 ### Core RPI Workflow
 
-| Command                      | Description                               |
-| ---------------------------- | ----------------------------------------- |
-| `rpi:research_codebase`      | Document codebase with thoughts directory |
-| `rpi:research_codebase_generic` | Generic codebase research              |
-| `rpi:research_codebase_nt`   | Research without thoughts directory       |
-| `rpi:create_plan`            | Create detailed implementation plans      |
-| `rpi:create_plan_generic`    | Generic plan creation                     |
-| `rpi:create_plan_nt`         | Plan creation without thoughts            |
-| `rpi:iterate_plan`           | Iterate on existing plans                 |
-| `rpi:iterate_plan_nt`        | Iterate without thoughts                  |
-| `rpi:implement_plan`         | Execute plans from thoughts/shared/plans  |
-| `rpi:validate_plan`          | Validate implementation against plan      |
+| Command                         | Description                               |
+| ------------------------------- | ----------------------------------------- |
+| `rpi:research_codebase`         | Document codebase with thoughts directory |
+| `rpi:research_codebase_generic` | Generic codebase research                 |
+| `rpi:research_codebase_nt`      | Research without thoughts directory       |
+| `rpi:create_plan`               | Create detailed implementation plans      |
+| `rpi:create_plan_generic`       | Generic plan creation                     |
+| `rpi:create_plan_nt`            | Plan creation without thoughts            |
+| `rpi:iterate_plan`              | Iterate on existing plans                 |
+| `rpi:iterate_plan_nt`           | Iterate without thoughts                  |
+| `rpi:implement_plan`            | Execute plans from thoughts/shared/plans  |
+| `rpi:validate_plan`             | Validate implementation against plan      |
 
 ### Git & PR (shared)
 
-| Command               | Description                       |
-| --------------------- | --------------------------------- |
-| `rpi:commit`          | Create commits with user approval |
-| `rpi:ci_commit`       | CI/CD commit workflow             |
-| `rpi:describe_pr`     | Generate PR descriptions          |
-| `rpi:ci_describe_pr`  | CI PR descriptions                |
-| `rpi:describe_pr_nt`  | PR descriptions without thoughts  |
+| Command              | Description                       |
+| -------------------- | --------------------------------- |
+| `rpi:commit`         | Create commits with user approval |
+| `rpi:ci_commit`      | CI/CD commit workflow             |
+| `rpi:describe_pr`    | Generate PR descriptions          |
+| `rpi:ci_describe_pr` | CI PR descriptions                |
+| `rpi:describe_pr_nt` | PR descriptions without thoughts  |
 
 ### Workflow Management
 
