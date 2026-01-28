@@ -15,20 +15,20 @@ When invoked with a parameter like `gh_username:branchName`:
    - If no parameter provided, ask for it in the format: `gh_username:branchName`
 
 2. **Extract ticket information**:
-   - Look for ticket numbers in the branch name (e.g., `iwa-1234`, `IWA-1234`)
+   - Look for ticket numbers in the branch name (e.g., `proj-1234`, `PROJ-1234`, or GitHub issue numbers)
    - Use this to create a short worktree directory name
    - If no ticket found, use a sanitized version of the branch name
 
 3. **Set up the remote and worktree**:
    - Check if the remote already exists using `git remote -v`
-   - If not, add it: `git remote add USERNAME git@github.com:USERNAME/humanlayer`
+   - If not, add it: `git remote add USERNAME git@github.com:USERNAME/{repo}`
    - Fetch from the remote: `git fetch USERNAME`
-   - Create worktree: `git worktree add -b BRANCHNAME ~/wt/humanlayer/SHORT_NAME USERNAME/BRANCHNAME`
+   - Create worktree: `git worktree add -b BRANCHNAME ~/wt/{repo}/SHORT_NAME USERNAME/BRANCHNAME`
 
 4. **Configure the worktree**:
    - Copy Claude settings: `cp .claude/settings.local.json WORKTREE/.claude/`
    - Run setup: `make -C WORKTREE setup`
-   - Initialize thoughts: `cd WORKTREE && humanlayer thoughts init --directory humanlayer`
+   - Initialize thoughts: `cd WORKTREE && thoughts init`
 
 ## Error Handling
 
@@ -43,6 +43,7 @@ rpi:local_review samdickson22:sam/eng-1696-hotkey-for-yolo-mode
 ```
 
 This will:
+
 - Add 'samdickson22' as a remote
-- Create worktree at `~/wt/humanlayer/eng-1696`
+- Create worktree at `~/wt/{repo}/eng-1696`
 - Set up the environment

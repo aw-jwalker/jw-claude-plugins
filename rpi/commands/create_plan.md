@@ -18,6 +18,7 @@ When this command is invoked:
    - Begin the research process
 
 2. **If no parameters provided**, respond with:
+
 ```
 I'll help you create a detailed implementation plan. Let me start by understanding what we're building.
 
@@ -49,7 +50,6 @@ Then wait for the user's input.
 
 2. **Spawn initial research tasks to gather context**:
    Before asking the user any questions, use specialized agents to research in parallel:
-
    - Use the **codebase-locator** agent to find all files related to the ticket/task
    - Use the **codebase-analyzer** agent to understand how the current implementation works
    - If relevant, use the **thoughts-locator** agent to find any existing thoughts documents about this feature
@@ -57,7 +57,7 @@ Then wait for the user's input.
 
    These agents will:
    - Find relevant source files, configs, and tests
-   - Identify the specific directories to focus on (e.g., if WUI is mentioned, they'll focus on humanlayer-wui/)
+   - Identify the specific directories to focus on (e.g., if frontend is mentioned, they'll focus on the frontend directory)
    - Trace data flow and key functions
    - Return detailed explanations with file:line references
 
@@ -73,6 +73,7 @@ Then wait for the user's input.
    - Determine true scope based on codebase reality
 
 5. **Present informed understanding and focused questions**:
+
    ```
    Based on the ticket and my research of the codebase, I understand we need to [accurate summary].
 
@@ -124,9 +125,10 @@ After getting initial clarifications:
    - Return specific file:line references
    - Find tests and examples
 
-3. **Wait for ALL sub-tasks to complete** before proceeding
+4. **Wait for ALL sub-tasks to complete** before proceeding
 
-4. **Present findings and design options**:
+5. **Present findings and design options**:
+
    ```
    Based on my research, here's what I found:
 
@@ -150,6 +152,7 @@ After getting initial clarifications:
 Once aligned on approach:
 
 1. **Create initial plan outline**:
+
    ```
    Here's my proposed plan structure:
 
@@ -170,17 +173,36 @@ Once aligned on approach:
 
 After structure approval:
 
-1. **Write the plan** to `thoughts/shared/plans/YYYY-MM-DD-IWA-XXXX-description.md`
-   - Format: `YYYY-MM-DD-IWA-XXXX-description.md` where:
+1. **Gather metadata** by running `thoughts metadata` to get:
+   - Current date/time and timestamps
+   - Git commit, branch, and repository info
+   - Researcher name
+
+2. **Write the plan** to `thoughts/shared/plans/YYYY-MM-DD-{ticket}-description.md`
+   - Format: `YYYY-MM-DD-{ticket}-description.md` where:
      - YYYY-MM-DD is today's date
-     - IWA-XXXX is the ticket number (omit if no ticket)
+     - {ticket} is the ticket number (omit if no ticket)
      - description is a brief kebab-case description
    - Examples:
-     - With ticket: `2025-01-08-IWA-1234-parent-child-tracking.md`
+     - With ticket: `2025-01-08-PROJ-1234-parent-child-tracking.md`
      - Without ticket: `2025-01-08-improve-error-handling.md`
-2. **Use this template structure**:
+
+3. **Use this template structure**:
 
 ````markdown
+---
+date: [ISO date from thoughts metadata]
+researcher: [Researcher name from thoughts metadata]
+git_commit: [Current commit hash]
+branch: [Current branch name]
+repository: [Repository name]
+ticket: [Ticket number if applicable, omit if none]
+status: draft
+last_updated: [Current date in YYYY-MM-DD format]
+last_updated_by: [Researcher name]
+type: implementation_plan
+---
+
 # [Feature/Task Name] Implementation Plan
 
 ## Overview
@@ -196,6 +218,7 @@ After structure approval:
 [A Specification of the desired end state after this plan is complete, and how to verify it]
 
 ### Key Discoveries:
+
 - [Important finding with file:line reference]
 - [Pattern to follow]
 - [Constraint to work within]
@@ -211,11 +234,13 @@ After structure approval:
 ## Phase 1: [Descriptive Name]
 
 ### Overview
+
 [What this phase accomplishes]
 
 ### Changes Required:
 
 #### 1. [Component/File Group]
+
 **File**: `path/to/file.ext`
 **Changes**: [Summary of changes]
 
@@ -226,14 +251,17 @@ After structure approval:
 ### Success Criteria:
 
 #### Automated Verification:
+
 Use the **test-runner** agent (runs in isolated context, returns summary only):
 `Use the test-runner agent to run all tests and summarize results`
+
 - [ ] Type checking passes
 - [ ] Linting passes
 - [ ] Unit tests pass
 - [ ] Build succeeds (if applicable)
 
 #### Manual Verification:
+
 - [ ] Feature works as expected when tested via UI
 - [ ] Performance is acceptable under load
 - [ ] Edge case handling verified manually
@@ -252,13 +280,16 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 ## Testing Strategy
 
 ### Unit Tests:
+
 - [What to test]
 - [Key edge cases]
 
 ### Integration Tests:
+
 - [End-to-end scenarios]
 
 ### Manual Testing Steps:
+
 1. [Specific step to verify feature]
 2. [Another verification step]
 3. [Edge case to test manually]
@@ -281,13 +312,14 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 ### Step 5: Sync and Review
 
 1. **Sync the thoughts directory**:
-   - Run `humanlayer thoughts sync` to sync the newly created plan
+   - Run `thoughts sync` to sync the newly created plan
    - This ensures the plan is properly indexed and available
 
 2. **Present the draft plan location**:
+
    ```
    I've created the initial implementation plan at:
-   `thoughts/shared/plans/YYYY-MM-DD-IWA-XXXX-description.md`
+   `thoughts/shared/plans/YYYY-MM-DD-{ticket}-description.md`
 
    Please review it and let me know:
    - Are the phases properly scoped?
@@ -301,7 +333,7 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
    - Adjust technical approach
    - Clarify success criteria (both automated and manual)
    - Add/remove scope items
-   - After making changes, run `humanlayer thoughts sync` again
+   - After making changes, run `thoughts sync` again
 
 4. **Continue refining** until the user is satisfied
 
@@ -324,7 +356,7 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
    - Research actual code patterns using parallel sub-tasks
    - Include specific file paths and line numbers
    - Write measurable success criteria with clear automated vs manual distinction
-   - automated steps should use `make` whenever possible - for example `make -C humanlayer-wui check` instead of `cd humanlayer-wui && bun run fmt`
+   - automated steps should use `make` whenever possible - for example `make -C {subdir} check` instead of `cd {subdir} && npm run fmt`
 
 4. **Be Practical**:
    - Focus on incremental, testable changes
@@ -361,12 +393,15 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
    - User acceptance criteria
 
 **Format example:**
+
 ```markdown
 ### Success Criteria:
 
 #### Automated Verification:
+
 Use the **test-runner** agent (runs in isolated context, returns summary only):
 `Use the test-runner agent to run all tests and summarize results`
+
 - [ ] Type checking passes
 - [ ] Linting passes
 - [ ] Unit tests pass
@@ -374,6 +409,7 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 - [ ] Database migration runs (if applicable): `make migrate`
 
 #### Manual Verification:
+
 - [ ] New feature appears correctly in the UI
 - [ ] Performance is acceptable with 1000+ items
 - [ ] Error messages are user-friendly
@@ -383,6 +419,7 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 ## Common Patterns
 
 ### For Database Changes:
+
 - Start with schema/migration
 - Add store methods
 - Update business logic
@@ -390,6 +427,7 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 - Update clients
 
 ### For New Features:
+
 - Research existing patterns first
 - Start with data model
 - Build backend logic
@@ -397,6 +435,7 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 - Implement UI last
 
 ### For Refactoring:
+
 - Document current behavior
 - Plan incremental changes
 - Maintain backwards compatibility
@@ -414,9 +453,9 @@ When spawning research sub-tasks:
    - What information to extract
    - Expected output format
 4. **Be EXTREMELY specific about directories**:
-   - If the ticket mentions "WUI", specify `humanlayer-wui/` directory
-   - If it mentions "daemon", specify `hld/` directory
-   - Never use generic terms like "UI" when you mean "WUI"
+   - If the ticket mentions a specific component, specify its exact directory
+   - Don't use generic terms when you know the specific directory name
+   - Include the full path context in your prompts
    - Include the full path context in your prompts
 5. **Specify read-only tools** to use
 6. **Request specific file:line references** in responses
@@ -427,6 +466,7 @@ When spawning research sub-tasks:
    - Don't accept results that seem incorrect
 
 Example of spawning multiple tasks:
+
 ```python
 # Spawn these tasks concurrently:
 tasks = [

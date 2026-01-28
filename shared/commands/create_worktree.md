@@ -1,10 +1,9 @@
-
 ---
 description: Create worktree and launch implementation session for a plan
 ---
 
 2. set up worktree for implementation:
-2a. read `hack/create_worktree.sh` and create a new worktree with the Linear branch name: `./hack/create_worktree.sh IWA-XXXX BRANCH_NAME`
+   2a. read `hack/create_worktree.sh` and create a new worktree with the Linear branch name: `./hack/create_worktree.sh {TICKET} BRANCH_NAME`
 
 3. determine required data:
 
@@ -14,6 +13,7 @@ launch prompt
 command to run
 
 **IMPORTANT PATH USAGE:**
+
 - The thoughts/ directory is synced between the main repo and worktrees
 - Always use ONLY the relative path starting with `thoughts/shared/...` without any directory prefix
 - Example: `thoughts/shared/plans/fix-mcp-keepalive-proper.md` (not the full absolute path)
@@ -24,18 +24,18 @@ command to run
 ```
 based on the input, I plan to create a worktree with the following details:
 
-worktree path: ~/wt/humanlayer/IWA-XXXX
+worktree path: ~/wt/{project}/{TICKET}
 branch name: BRANCH_NAME
 path to plan file: $FILEPATH
 launch prompt:
 
-    /implement_plan at $FILEPATH and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the Linear ticket with the PR link
+    /implement_plan at $FILEPATH and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the ticket with the PR link
 
 command to run:
 
-    humanlayer launch --model opus -w ~/wt/humanlayer/IWA-XXXX "/implement_plan at $FILEPATH and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the Linear ticket with the PR link"
+    claude -w ~/wt/{project}/{TICKET} "/implement_plan at $FILEPATH and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the ticket with the PR link"
 ```
 
 incorporate any user feedback then:
 
-4. launch implementation session: `humanlayer launch --model opus -w ~/wt/humanlayer/IWA-XXXX "/implement_plan at $FILEPATH and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the Linear ticket with the PR link"`
+4. launch implementation session: `claude -w ~/wt/{project}/{TICKET} "/implement_plan at $FILEPATH and when you are done implementing and all tests pass, read ./claude/commands/commit.md and create a commit, then read ./claude/commands/describe_pr.md and create a PR, then add a comment to the ticket with the PR link"`

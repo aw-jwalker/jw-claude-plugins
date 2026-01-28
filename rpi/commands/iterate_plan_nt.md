@@ -18,6 +18,7 @@ When this command is invoked:
 2. **Handle different input scenarios**:
 
    **If NO plan file provided**:
+
    ```
    I'll help you iterate on an existing implementation plan.
 
@@ -25,9 +26,11 @@ When this command is invoked:
 
    Tip: You can list recent plans with `ls -lt thoughts/shared/plans/ | head`
    ```
+
    Wait for user input, then re-check for feedback.
 
    **If plan file provided but NO feedback**:
+
    ```
    I've found the plan at [path]. What changes would you like to make?
 
@@ -37,6 +40,7 @@ When this command is invoked:
    - "Adjust the scope to exclude feature X"
    - "Split Phase 2 into two separate phases"
    ```
+
    Wait for user input.
 
    **If BOTH plan file AND feedback provided**:
@@ -106,19 +110,26 @@ Get user confirmation before proceeding.
 
 ### Step 4: Update the Plan
 
-1. **Make focused, precise edits** to the existing plan:
+1. **Gather metadata** (run `thoughts metadata` or manually get current date/time)
+
+2. **Update the frontmatter** (if the plan has YAML frontmatter):
+   - Update `last_updated` to current date (YYYY-MM-DD format)
+   - Update `last_updated_by` to current researcher
+   - Optionally update `status` if the plan state has changed (draft → ready, etc.)
+
+3. **Make focused, precise edits** to the existing plan:
    - Use the Edit tool for surgical changes
    - Maintain the existing structure unless explicitly changing it
    - Keep all file:line references accurate
    - Update success criteria if needed
 
-2. **Ensure consistency**:
+4. **Ensure consistency**:
    - If adding a new phase, ensure it follows the existing pattern
    - If modifying scope, update "What We're NOT Doing" section
    - If changing approach, update "Implementation Approach" section
    - Maintain the distinction between automated vs manual success criteria
 
-3. **Preserve quality standards**:
+5. **Preserve quality standards**:
    - Include specific file paths and line numbers for new content
    - Write measurable success criteria
    - Use `make` commands for automated verification
@@ -127,19 +138,20 @@ Get user confirmation before proceeding.
 ### Step 5: Sync and Review
 
 **Present the changes made**:
-   ```
-   I've updated the plan at `thoughts/shared/plans/[filename].md`
 
-   Changes made:
-   - [Specific change 1]
-   - [Specific change 2]
+```
+I've updated the plan at `thoughts/shared/plans/[filename].md`
 
-   The updated plan now:
-   - [Key improvement]
-   - [Another improvement]
+Changes made:
+- [Specific change 1]
+- [Specific change 2]
 
-   Would you like any further adjustments?
-   ```
+The updated plan now:
+- [Key improvement]
+- [Another improvement]
+
+Would you like any further adjustments?
+```
 
 **Be ready to iterate further** based on feedback
 
@@ -214,12 +226,14 @@ When spawning research sub-tasks:
 ## Example Interaction Flows
 
 **Scenario 1: User provides everything upfront**
+
 ```
 User: /iterate_plan thoughts/shared/plans/2025-10-16-feature.md - add phase for error handling
 Assistant: [Reads plan, researches error handling patterns, updates plan]
 ```
 
 **Scenario 2: User provides just plan file**
+
 ```
 User: /iterate_plan thoughts/shared/plans/2025-10-16-feature.md
 Assistant: I've found the plan. What changes would you like to make?
@@ -228,6 +242,7 @@ Assistant: [Proceeds with update]
 ```
 
 **Scenario 3: User provides no arguments**
+
 ```
 User: /iterate_plan
 Assistant: Which plan would you like to update? Please provide the path...

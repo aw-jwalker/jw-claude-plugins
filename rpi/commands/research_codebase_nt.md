@@ -8,6 +8,7 @@ model: opus
 You are tasked with conducting comprehensive research across the codebase to answer user questions by spawning parallel sub-agents and synthesizing their findings.
 
 ## CRITICAL: YOUR ONLY JOB IS TO DOCUMENT AND EXPLAIN THE CODEBASE AS IT EXISTS TODAY
+
 - DO NOT suggest improvements or changes unless the user explicitly asks for them
 - DO NOT perform root cause analysis unless the user explicitly asks for them
 - DO NOT propose future enhancements unless the user explicitly asks for them
@@ -19,6 +20,7 @@ You are tasked with conducting comprehensive research across the codebase to ans
 ## Initial Setup:
 
 When this command is invoked, respond with:
+
 ```
 I'm ready to research the codebase. Please provide your research question or area of interest, and I'll analyze it thoroughly by exploring relevant components and connections.
 ```
@@ -77,19 +79,20 @@ Then wait for the user's research query.
    - Answer the user's specific questions with concrete evidence
 
 5. **Gather metadata for the research document:**
-   - Run Bash() tools to generate all relevant metadata
-   - Filename: `thoughts/shared/research/YYYY-MM-DD-IWA-XXXX-description.md`
-     - Format: `YYYY-MM-DD-IWA-XXXX-description.md` where:
+   - Run `thoughts metadata` (or manually gather date, git info, researcher name)
+   - Filename: `thoughts/shared/research/YYYY-MM-DD-{ticket}-description.md`
+     - Format: `YYYY-MM-DD-{ticket}-description.md` where:
        - YYYY-MM-DD is today's date
-       - IWA-XXXX is the ticket number (omit if no ticket)
+       - {ticket} is the ticket number (omit if no ticket)
        - description is a brief kebab-case description of the research topic
      - Examples:
-       - With ticket: `2025-01-08-IWA-1234-parent-child-tracking.md`
+       - With ticket: `2025-01-08-PROJ-1234-parent-child-tracking.md`
        - Without ticket: `2025-01-08-authentication-flow.md`
 
 6. **Generate research document:**
    - Use the metadata gathered in step 4
    - Structure the document with YAML frontmatter followed by content:
+
      ```markdown
      ---
      date: [Current date and time with timezone in ISO format]
@@ -113,32 +116,40 @@ Then wait for the user's research query.
      **Repository**: [Repository name]
 
      ## Research Question
+
      [Original user query]
 
      ## Summary
+
      [High-level documentation of what was found, answering the user's question by describing what exists]
 
      ## Detailed Findings
 
      ### [Component/Area 1]
+
      - Description of what exists ([file.ext:line](link))
      - How it connects to other components
      - Current implementation details (without evaluation)
 
      ### [Component/Area 2]
+
      ...
 
      ## Code References
+
      - `path/to/file.py:123` - Description of what's there
      - `another/file.ts:45-67` - Description of the code block
 
      ## Architecture Documentation
+
      [Current patterns, conventions, and design implementations found in the codebase]
 
      ## Related Research
+
      [Links to other research documents in thoughts/shared/research/]
 
      ## Open Questions
+
      [Any areas that need further investigation]
      ```
 
@@ -163,6 +174,7 @@ Then wait for the user's research query.
    - Continue updating the document
 
 ## Important notes:
+
 - Always use parallel Task agents to maximize efficiency and minimize context usage
 - Always run fresh codebase research - never rely solely on existing research documents
 - Focus on finding concrete file paths and line numbers for developer reference
