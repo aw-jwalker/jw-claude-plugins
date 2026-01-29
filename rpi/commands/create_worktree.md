@@ -55,7 +55,7 @@ You can specify a base branch with `--base`:
 thoughts worktree add "$BRANCH_NAME" --base develop
 ```
 
-By default, new branches are created from `main`.
+By default, new branches are created from `dev`.
 
 ## Example Usage
 
