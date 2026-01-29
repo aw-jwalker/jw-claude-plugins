@@ -5,7 +5,7 @@ argument-hint: <[branch] thoughts/shared/plans/2025-01-01-IWA-1234-feature.md>
 
 # Implement Plan in Worktree
 
-Creates a git worktree for isolated implementation, then launches a Claude session to implement the plan.
+Creates a git worktree for isolated implementation, then continues working in that worktree directory within the same session.
 
 ## Argument Parsing
 
@@ -75,25 +75,28 @@ If extraction fails or is ambiguous, ask the user for the branch name.
    thoughts worktree path "$BRANCH_NAME"
    ```
 
-7. **Confirm with user** before launching:
+7. **Confirm with user** before proceeding:
 
    ```
-   Ready to launch implementation session:
+   Worktree ready for implementation:
 
-   Worktree: ~/wt/{project}/{branch}
+   Worktree: {worktree-path}
    Branch: {branch}
    Plan: {plan-path}
 
-   Command:
-       claude -w ~/wt/{project}/{branch} "/implement_plan {plan-path} and when done, /commit then /describe_pr"
-
+   I'll now work in the worktree directory and implement the plan.
    Proceed?
    ```
 
-8. **Launch Claude session**:
-   ```bash
-   claude -w "$WORKTREE_PATH" "/implement_plan $PLAN_PATH and when you are done implementing and all tests pass, /commit then /describe_pr then add a comment to the ticket with the PR link"
-   ```
+8. **Continue working in the worktree**:
+   - Use the worktree path as the working directory for all subsequent commands
+   - For bash commands, prefix with `cd {worktree-path} &&` or use absolute paths
+   - Read/Write/Edit tools should use absolute paths within the worktree
+
+9. **Invoke /implement_plan**:
+   - Read and follow the `/implement_plan` command with the plan path
+   - All implementation work happens in the worktree directory
+   - The plan file is accessible via the synced thoughts directory
 
 ## Error Handling
 
@@ -115,7 +118,8 @@ If extraction fails or is ambiguous, ask the user for the branch name.
 
 ```
 /implement_plan_wt thoughts/shared/plans/2025-01-29-IWA-1234-feature.md
-# → Creates branch IWA-1234, worktree at ~/wt/project/IWA-1234, launches implementation
+# → Creates branch IWA-1234, worktree at ~/wt/project/IWA-1234
+# → Continues in same session, implements the plan in the worktree
 
 /implement_plan_wt my-custom-branch thoughts/shared/plans/2025-01-29-feature.md
 # → Uses explicit branch name "my-custom-branch"
@@ -126,5 +130,8 @@ If extraction fails or is ambiguous, ask the user for the branch name.
 
 ## Notes
 
-- The thoughts directory is synced between main repo and worktrees, so use relative paths like `thoughts/shared/plans/...`
-- After the implementation session completes, use `/clean_worktree {branch}` from the main repo to clean up
+- The thoughts directory is synced between main repo and worktrees, so plan paths work in both locations
+- All bash commands will be run in the worktree directory (using `cd {worktree-path} && ...`)
+- File operations (Read/Write/Edit) will use absolute paths in the worktree
+- After implementation is complete, use `/clean_worktree {branch}` from the main repo to clean up
+- You can return to the main repo at any time by running commands with the main repo path
