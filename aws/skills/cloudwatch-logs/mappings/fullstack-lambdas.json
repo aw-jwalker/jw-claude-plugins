@@ -1,0 +1,56 @@
+{
+  "repository": "fullstack.assetwatch",
+  "last_updated": "2026-02-03",
+  "description": "Lambda name mappings for fullstack.assetwatch repository",
+  "pattern": "Code folders start with 'lf-vero-prod-*'. Strip the prefix and use: {name}-{env}-{branch}",
+  "mappings": [
+    {
+      "code_folder": "lf-vero-prod-hub",
+      "aws_pattern": "hub-{env}-{branch}",
+      "description": "Hub diagnostic and configuration lambda",
+      "examples": ["hub-prod-master", "hub-dev-iwa-12345", "hub-qa-master"]
+    },
+    {
+      "code_folder": "lf-vero-prod-asset",
+      "aws_pattern": "asset-{env}-{branch}",
+      "description": "Asset management lambda",
+      "examples": ["asset-prod-master", "asset-dev-iwa-12345"]
+    },
+    {
+      "code_folder": "lf-vero-prod-assetalert",
+      "aws_pattern": "assetalert-{env}-{branch}",
+      "description": "Asset alert management lambda",
+      "examples": ["assetalert-prod-master"]
+    },
+    {
+      "code_folder": "lf-vero-prod-facilities",
+      "aws_pattern": "facilities-{env}-{branch}",
+      "description": "Facilities management lambda"
+    },
+    {
+      "code_folder": "lf-vero-prod-sensor",
+      "aws_pattern": "sensor-{env}-{branch}",
+      "description": "Sensor data lambda"
+    },
+    {
+      "code_folder": "lf-vero-prod-monitoringpoint",
+      "aws_pattern": "monitoringpoint-{env}-{branch}",
+      "description": "Monitoring point lambda"
+    },
+    {
+      "code_folder": "lf-vero-prod-inventory",
+      "aws_pattern": "inventory-{env}-{branch}",
+      "description": "Inventory management lambda"
+    },
+    {
+      "code_folder": "lf-vero-prod-hwqa",
+      "aws_pattern": "hwqa-{env}-{branch}",
+      "description": "Hardware QA lambda"
+    }
+  ],
+  "notes": [
+    "For any lf-vero-prod-{name} folder, the pattern is: {name}-{env}-{branch}",
+    "Default branch is 'master' for prod, 'dev' for dev/qa",
+    "Feature branches follow pattern: iwa-{number} or {name}-{ticket}"
+  ]
+}

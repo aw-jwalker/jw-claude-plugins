@@ -10,11 +10,33 @@ You are tasked with writing a handoff document to hand off your work to another 
 
 ### 1. Filepath & Metadata
 
-Use the following information to understand how to create your document: - create your file under `thoughts/shared/handoffs/{ticket}/YYYY-MM-DD_HH-MM-SS_{ticket}_description.md`, where: - YYYY-MM-DD is today's date - HH-MM-SS is the hours, minutes and seconds based on the current time, in 24-hour format (i.e. use `13:00` for `1:00 pm`) - {ticket} is the ticket number (replace with `general` if no ticket) - description is a brief kebab-case description - Run `thoughts metadata` to generate all relevant metadata - Examples: - With ticket: `2025-01-08_13-55-22_PROJ-1234_create-context-compaction.md` - Without ticket: `2025-01-08_13-55-22_create-context-compaction.md`
+First, run `thoughts metadata` to generate all relevant metadata (dates, git info, researcher name).
 
-### 2. Handoff writing.
+Then determine the filepath for your handoff document:
+- **Path pattern**: `thoughts/shared/handoffs/{ticket}/YYYY-MM-DD_HH-MM-SS_{ticket}_description.md`
+- **Important**: This path is relative to your CURRENT working directory (the project repo), NOT the thoughts repo root
+- The `thoughts/` directory in your current repo is a symlink to the correct location in the central thoughts repo
+- When using the Write tool, construct the full absolute path: `<current_working_directory>/thoughts/shared/handoffs/{ticket}/...`
 
-using the above conventions, write your document. use the defined filepath, and the following YAML frontmatter pattern. Use the metadata gathered in step 1, Structure the document with YAML frontmatter followed by content:
+**Path components**:
+- YYYY-MM-DD: today's date
+- HH-MM-SS: current time in 24-hour format (e.g., `13:00` for `1:00 pm`)
+- {ticket}: ticket number (use `general` if no ticket)
+- description: brief kebab-case description
+
+**Examples** (full paths relative to current repo):
+- With ticket: `thoughts/shared/handoffs/PROJ-1234/2025-01-08_13-55-22_PROJ-1234_create-context-compaction.md`
+- Without ticket: `thoughts/shared/handoffs/general/2025-01-08_13-55-22_create-context-compaction.md`
+
+### 2. Write the Handoff Document
+
+Using the Write tool, create your handoff document at the filepath determined in step 1.
+
+**Important**: Use the full absolute path starting from your current working directory:
+- Example: `/home/user/repos/project-name/thoughts/shared/handoffs/general/2025-01-08_13-55-22_description.md`
+- The `thoughts/shared` symlink will resolve this to the correct location in the central thoughts repo
+
+Structure the document with YAML frontmatter (using metadata from step 1) followed by content:
 
 Use the following template structure:
 
@@ -66,9 +88,14 @@ type: implementation_strategy
 
 ---
 
-### 3. Approve and Sync
+### 3. Sync to Remote
 
-Run `thoughts sync` to save the document.
+After writing the handoff document, run `thoughts sync` to:
+- Create the searchable index (hard links for AI tools)
+- Commit the changes to the central thoughts repo
+- Push to the remote repository
+
+The `thoughts sync` command handles all git operations (add, commit, pull, push) automatically.
 
 Once this is completed, you should respond to the user with the template between <template_response></template_response> XML tags. do NOT include the tags in your response.
 
