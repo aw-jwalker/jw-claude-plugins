@@ -1,0 +1,47 @@
+{
+  "repository": "assetwatch-jobs",
+  "last_updated": "2026-02-04",
+  "description": "Lambda name mappings for assetwatch-jobs repository",
+  "pattern": "Code folders are 'jobs_{name}/'. Replace underscores with hyphens: jobs-{name-with-hyphens}-{env}-{branch}",
+  "mappings": [
+    {
+      "code_folder": "jobs_data_processor_gen2/",
+      "aws_pattern": "jobs-data-processor-gen2-{env}-{branch}",
+      "description": "Data processor Gen2 job",
+      "examples": [
+        "jobs-data-processor-gen2-prod-master",
+        "jobs-data-processor-gen2-dev-dev"
+      ]
+    },
+    {
+      "code_folder": "jobs_notifications/",
+      "aws_pattern": "jobs-notifications-{env}-{branch}",
+      "description": "Notifications job",
+      "examples": [
+        "jobs-notifications-prod-master",
+        "jobs-notifications-dev-dev"
+      ]
+    },
+    {
+      "code_folder": "jobs_alarm/",
+      "aws_pattern": "jobs-alarm-temperature-{env}-{branch} OR jobs-app-notification-{env}-{branch}",
+      "description": "Alarm job (has multiple variants)",
+      "examples": [
+        "jobs-alarm-temperature-prod-master",
+        "jobs-app-notification-prod-master"
+      ],
+      "notes": "This job has two different lambda names depending on the alarm type"
+    },
+    {
+      "code_folder": "jobs_hardware/",
+      "aws_pattern": "jobs-hardware-{env}-{branch}",
+      "description": "Hardware job",
+      "examples": ["jobs-hardware-prod-master", "jobs-hardware-dev-dev"]
+    }
+  ],
+  "notes": [
+    "For any jobs_{name}/ folder, the pattern is: jobs-{name-with-hyphens}-{env}-{branch}",
+    "Replace underscores with hyphens in the name portion",
+    "Default branch is 'master' for prod, 'dev' for dev/qa"
+  ]
+}

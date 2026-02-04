@@ -24,57 +24,41 @@ When the user wants to search CloudWatch logs, gather this information:
 
 ## Lambda Name Transformation
 
-**CRITICAL**: The code folder names do NOT match AWS lambda names. Use these
-mappings:
+**CRITICAL**: The code folder names do NOT match AWS lambda names.
 
-### fullstack.assetwatch Repository
+**BEFORE transforming lambda names, read the mapping files:**
 
-Code folders start with `lf-vero-prod-*`. Strip the prefix and use the short
-name:
+- `mappings/fullstack-lambdas.json` - fullstack.assetwatch repository
+- `mappings/jobs-lambdas.json` - assetwatch-jobs repository
+- `mappings/api-lambdas.json` - API repositories (internal.api, external.api)
 
-| Code Folder                    | AWS Lambda Pattern               |
-| ------------------------------ | -------------------------------- |
-| `lf-vero-prod-hub`             | `hub-{env}-{branch}`             |
-| `lf-vero-prod-asset`           | `asset-{env}-{branch}`           |
-| `lf-vero-prod-assetalert`      | `assetalert-{env}-{branch}`      |
-| `lf-vero-prod-facilities`      | `facilities-{env}-{branch}`      |
-| `lf-vero-prod-sensor`          | `sensor-{env}-{branch}`          |
-| `lf-vero-prod-monitoringpoint` | `monitoringpoint-{env}-{branch}` |
-| `lf-vero-prod-inventory`       | `inventory-{env}-{branch}`       |
-| `lf-vero-prod-hwqa`            | `hwqa-{env}-{branch}`            |
-| Any `lf-vero-prod-{name}`      | `{name}-{env}-{branch}`          |
+These JSON files contain complete mappings with examples and edge cases.
 
-**Examples:**
+### Quick Reference
 
-- `lf-vero-prod-hub` + prod + master = `hub-prod-master`
-- `lf-vero-prod-hub` + dev + iwa-12345 = `hub-dev-iwa-12345`
-- `lf-vero-prod-asset` + qa + master = `asset-qa-master`
+**fullstack.assetwatch:**
 
-### assetwatch-jobs Repository
+- Pattern: `lf-vero-prod-{name}` → `{name}-{env}-{branch}`
+- Example: `lf-vero-prod-hub` + dev + iwa-12345 = `hub-dev-iwa-12345`
+- Common: hub, asset, assetalert, facilities, sensor, monitoringpoint,
+  inventory, hwqa
 
-Code folders are `jobs_{name}/`. Replace underscores with hyphens:
+**assetwatch-jobs:**
 
-| Code Folder                 | AWS Lambda Pattern                                                                |
-| --------------------------- | --------------------------------------------------------------------------------- |
-| `jobs_data_processor_gen2/` | `jobs-data-processor-gen2-{env}-{branch}`                                         |
-| `jobs_notifications/`       | `jobs-notifications-{env}-{branch}`                                               |
-| `jobs_alarm/`               | `jobs-alarm-temperature-{env}-{branch}` or `jobs-app-notification-{env}-{branch}` |
-| `jobs_hardware/`            | `jobs-hardware-{env}-{branch}`                                                    |
-| Any `jobs_{name}/`          | `jobs-{name-with-hyphens}-{env}-{branch}`                                         |
+- Pattern: `jobs_{name}/` → `jobs-{name-with-hyphens}-{env}-{branch}`
+- Example: `jobs_data_processor_gen2/` + prod + master =
+  `jobs-data-processor-gen2-prod-master`
+- Common: data_processor_gen2, notifications, alarm, hardware
 
-### internal.api Repository
+**API repositories:**
 
-| AWS Lambda Pattern                     |
-| -------------------------------------- |
-| `internal-api-{env}-{branch}`          |
-| `internal-api-jpw-etl-processor-{env}` |
+- internal.api: `internal-api-{env}-{branch}`,
+  `internal-api-jpw-etl-processor-{env}`
+- external.api: `external-api-{env}-{branch}`,
+  `enterprise-api-authorizer-{env}-{branch}`
 
-### external.api Repository
-
-| AWS Lambda Pattern                         |
-| ------------------------------------------ |
-| `external-api-{env}-{branch}`              |
-| `enterprise-api-authorizer-{env}-{branch}` |
+For complete mappings, descriptions, and all examples, read the JSON files
+above.
 
 ## AWS Account/Profile Mapping
 

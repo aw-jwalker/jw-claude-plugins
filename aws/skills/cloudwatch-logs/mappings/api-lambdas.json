@@ -1,0 +1,58 @@
+{
+  "last_updated": "2026-02-04",
+  "description": "Lambda name mappings for API repositories (internal.api and external.api)",
+  "repositories": [
+    {
+      "repository": "internal.api",
+      "description": "Internal API lambdas",
+      "mappings": [
+        {
+          "aws_pattern": "internal-api-{env}-{branch}",
+          "description": "Main internal API lambda",
+          "examples": [
+            "internal-api-prod-master",
+            "internal-api-dev-dev",
+            "internal-api-qa-master"
+          ]
+        },
+        {
+          "aws_pattern": "internal-api-jpw-etl-processor-{env}",
+          "description": "JPW ETL processor (no branch suffix)",
+          "examples": [
+            "internal-api-jpw-etl-processor-prod",
+            "internal-api-jpw-etl-processor-dev"
+          ],
+          "notes": "This lambda does not include branch in the name"
+        }
+      ]
+    },
+    {
+      "repository": "external.api",
+      "description": "External API lambdas",
+      "mappings": [
+        {
+          "aws_pattern": "external-api-{env}-{branch}",
+          "description": "Main external API lambda",
+          "examples": [
+            "external-api-prod-master",
+            "external-api-dev-dev",
+            "external-api-qa-master"
+          ]
+        },
+        {
+          "aws_pattern": "enterprise-api-authorizer-{env}-{branch}",
+          "description": "Enterprise API authorizer lambda",
+          "examples": [
+            "enterprise-api-authorizer-prod-master",
+            "enterprise-api-authorizer-dev-dev"
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "API lambdas follow the pattern: {api-name}-{env}-{branch}",
+    "Default branch is 'master' for prod, 'dev' or 'master' for dev/qa",
+    "Exception: JPW ETL processor does not include branch name"
+  ]
+}
