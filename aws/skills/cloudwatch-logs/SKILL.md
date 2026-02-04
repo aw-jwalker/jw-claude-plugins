@@ -346,15 +346,21 @@ like:**
 - "Add this to the cloudwatch-logs examples"
 - "Document this investigation for the skill"
 
-**When you hear this, DO NOT EDIT SKILL.md. Instead, follow these steps:**
+**When you hear this, follow these steps:**
 
 1. Review the conversation to identify 1-3 key learnings
-2. Decide which subdirectory to use (examples/, templates/, mappings/, scripts/)
-3. **Use Write tool** to create NEW files in subdirectories
-4. ❌ **Do NOT use Edit tool on SKILL.md**
+2. Decide what to update:
+   - **Investigation examples, query patterns, debugging workflows** → Create
+     files in subdirectories
+   - **Core instructions, AWS accounts, fundamental workflow changes** → May
+     need SKILL.md edits
+3. **Prefer subdirectories** for most learnings:
+   - Use Write tool to create `examples/2026-02-04-description.md`
+   - Or update `templates/query-patterns.json`
+   - Or add to `mappings/*.json`
+4. Only edit SKILL.md if core instructions truly need updating
 
-Example: Create `examples/2026-02-04-bug-investigation.md` with the
-investigation details.
+**Most session learnings go into subdirectories, not SKILL.md.**
 
 ### What to Update (Create New Files)
 
