@@ -348,6 +348,14 @@ like:**
 
 **When you hear this, follow these steps:**
 
+**CRITICAL - File Locations:**
+
+- ✅ **Write to source repo**:
+  `/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/`
+- ❌ **NOT to cache**: `~/.claude/plugins/cache/assetwatch-claude-plugins/...`
+
+Changes to cache are lost. Always update the source repository.
+
 1. Review the conversation to identify 1-3 key learnings
 2. Decide what to update:
    - **Investigation examples, query patterns, debugging workflows** → Create
@@ -355,9 +363,10 @@ like:**
    - **Core instructions, AWS accounts, fundamental workflow changes** → May
      need SKILL.md edits
 3. **Prefer subdirectories** for most learnings:
-   - Use Write tool to create `examples/2026-02-04-description.md`
-   - Or update `templates/query-patterns.json`
-   - Or add to `mappings/*.json`
+   - Use Write tool with full path:
+     `/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/examples/2026-02-04-description.md`
+   - Or:
+     `/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/templates/query-patterns.json`
 4. Only edit SKILL.md if core instructions truly need updating
 
 **Most session learnings go into subdirectories, not SKILL.md.**
@@ -436,15 +445,16 @@ After investigating a hub PartNumber validation bug, you should:
 
 ```bash
 # 1. Create an example document
-# Use Write tool to create:
-examples/2026-02-03-hub-partnumber-validation.md
+# Use Write tool with full source repo path:
+/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/examples/2026-02-03-hub-partnumber-validation.md
 
 # 2. Add query patterns you used
-# Use Write tool to create or update:
-templates/validation-debugging.json
+# Use Write tool with full source repo path:
+/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/templates/validation-debugging.json
 
-# 3. Do NOT edit SKILL.md
-# ❌ Don't use Edit tool on this file
+# 3. Do NOT write to cache
+# ❌ NOT: ~/.claude/plugins/cache/assetwatch-claude-plugins/...
+# ✅ YES: /home/aw-jwalker/repos/assetwatch-claude-plugins/...
 ```
 
 ### Reading From Subdirectories
