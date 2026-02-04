@@ -332,8 +332,16 @@ aws logs filter-log-events \
 ## Improving This Skill
 
 **This skill is designed to improve over time as you use it.** After completing
-a CloudWatch investigation, capture what you learned by updating the relevant
-subdirectories.
+a CloudWatch investigation, capture what you learned by **creating NEW FILES in
+the subdirectories**.
+
+**CRITICAL - DO NOT MODIFY SKILL.md**:
+
+- ✅ **DO**: Create new files in subdirectories (examples/, templates/,
+  mappings/, scripts/, docs/)
+- ❌ **DON'T**: Modify this main SKILL.md file
+- ✅ **DO**: Use Write tool to create new standalone files
+- ❌ **DON'T**: Use Edit tool to add sections to SKILL.md
 
 ### When to Update
 
@@ -344,23 +352,38 @@ After any significant CloudWatch log investigation, especially:
 - Error spike analysis (identified pattern)
 - Integration issues (tracked API calls)
 
-### What to Update
+### What to Update (Create New Files)
 
 #### 1. Add Examples (`examples/`)
 
 Document successful investigations so you can reference them later.
 
-**When:** After solving a problem using CloudWatch logs **How:** Create a
-markdown file following the template in `examples/README.md` **Why:** Build
-institutional knowledge, avoid rediscovering patterns
+**When:** After solving a problem using CloudWatch logs
+
+**How:**
+
+- Create a NEW markdown file in `examples/` directory
+- Example file path: `examples/2026-02-03-hub-partnumber-validation-bug.md`
+- Follow the template structure in `examples/README.md`
+- Include: context, search commands used, findings, resolution
+
+**Why:** Build institutional knowledge, avoid rediscovering patterns
 
 #### 2. Add Query Templates (`templates/`)
 
 Save filter patterns that worked well.
 
-**When:** You create a complex filter pattern that you'll reuse **How:** Add to
-a JSON file following the format in `templates/README.md` **Why:** Avoid
-recreating successful queries from scratch
+**When:** You create a complex filter pattern that you'll reuse
+
+**How:**
+
+- Create or update JSON files in `templates/` directory
+- Example file path: `templates/bug-investigation-queries.json`
+- Add query objects with: description, filter_pattern, time_range_minutes,
+  use_cases, example
+- See `templates/README.md` for JSON structure
+
+**Why:** Avoid recreating successful queries from scratch
 
 #### 3. Update Lambda Mappings (`mappings/`)
 
@@ -396,6 +419,23 @@ At the end of a CloudWatch investigation:
 3. **Update mappings** - If you discovered lambda mappings, update `mappings/`
 4. **Consider automation** - If you repeated commands, create a script in
    `scripts/`
+
+**Concrete Example:**
+
+After investigating a hub PartNumber validation bug, you should:
+
+```bash
+# 1. Create an example document
+# Use Write tool to create:
+examples/2026-02-03-hub-partnumber-validation.md
+
+# 2. Add query patterns you used
+# Use Write tool to create or update:
+templates/validation-debugging.json
+
+# 3. Do NOT edit SKILL.md
+# ❌ Don't use Edit tool on this file
+```
 
 ### Reading From Subdirectories
 
