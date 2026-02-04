@@ -1,19 +1,25 @@
 ---
-description: Create detailed implementation plans through interactive research and iteration
-argument-hint: <AW-123 | thoughts/shared/tickets/eng_123.md | "add logout button">
+description:
+  Create detailed implementation plans through interactive research and
+  iteration
+argument-hint:
+  <AW-123 | thoughts/shared/tickets/eng_123.md | "add logout button">
 model: opus
 ---
 
 # Implementation Plan
 
-You are tasked with creating detailed implementation plans through an interactive, iterative process. You should be skeptical, thorough, and work collaboratively with the user to produce high-quality technical specifications.
+You are tasked with creating detailed implementation plans through an
+interactive, iterative process. You should be skeptical, thorough, and work
+collaboratively with the user to produce high-quality technical specifications.
 
 ## Initial Response
 
 When this command is invoked:
 
 1. **Check if parameters were provided**:
-   - If a file path or ticket reference was provided as a parameter, skip the default message
+   - If a file path or ticket reference was provided as a parameter, skip the
+     default message
    - Immediately read any provided files FULLY
    - Begin the research process
 
@@ -44,20 +50,27 @@ Then wait for the user's input.
    - Research documents
    - Related implementation plans
    - Any JSON/data files mentioned
-   - **IMPORTANT**: Use the Read tool WITHOUT limit/offset parameters to read entire files
-   - **CRITICAL**: DO NOT spawn sub-tasks before reading these files yourself in the main context
+   - **IMPORTANT**: Use the Read tool WITHOUT limit/offset parameters to read
+     entire files
+   - **CRITICAL**: DO NOT spawn sub-tasks before reading these files yourself in
+     the main context
    - **NEVER** read files partially - if a file is mentioned, read it completely
 
-2. **Spawn initial research tasks to gather context**:
-   Before asking the user any questions, use specialized agents to research in parallel:
-   - Use the **codebase-locator** agent to find all files related to the ticket/task
-   - Use the **codebase-analyzer** agent to understand how the current implementation works
-   - If relevant, use the **thoughts-locator** agent to find any existing thoughts documents about this feature
-   - If a Linear ticket is mentioned, use the **linear-ticket-reader** agent to get full details
+2. **Spawn initial research tasks to gather context**: Before asking the user
+   any questions, use specialized agents to research in parallel:
+   - Use the **codebase-locator** agent to find all files related to the
+     ticket/task
+   - Use the **codebase-analyzer** agent to understand how the current
+     implementation works
+   - If relevant, use the **thoughts-locator** agent to find any existing
+     thoughts documents about this feature
+   - If a Linear ticket is mentioned, use the **linear-ticket-reader** agent to
+     get full details
 
    These agents will:
    - Find relevant source files, configs, and tests
-   - Identify the specific directories to focus on (e.g., if frontend is mentioned, they'll focus on the frontend directory)
+   - Identify the specific directories to focus on (e.g., if frontend is
+     mentioned, they'll focus on the frontend directory)
    - Trace data flow and key functions
    - Return detailed explanations with file:line references
 
@@ -88,7 +101,8 @@ Then wait for the user's input.
    - [Design preference that affects implementation]
    ```
 
-   Only ask questions that you genuinely cannot answer through code investigation.
+   Only ask questions that you genuinely cannot answer through code
+   investigation.
 
 ### Step 2: Research & Discovery
 
@@ -107,13 +121,17 @@ After getting initial clarifications:
    - Use the right agent for each type of research:
 
    **For deeper investigation:**
-   - **codebase-locator** - To find more specific files (e.g., "find all files that handle [specific component]")
-   - **codebase-analyzer** - To understand implementation details (e.g., "analyze how [system] works")
+   - **codebase-locator** - To find more specific files (e.g., "find all files
+     that handle [specific component]")
+   - **codebase-analyzer** - To understand implementation details (e.g.,
+     "analyze how [system] works")
    - **codebase-pattern-finder** - To find similar features we can model after
 
    **For historical context:**
-   - **thoughts-locator** - To find any research, plans, or decisions about this area
-   - **thoughts-analyzer** - To extract key insights from the most relevant documents
+   - **thoughts-locator** - To find any research, plans, or decisions about this
+     area
+   - **thoughts-analyzer** - To extract key insights from the most relevant
+     documents
 
    **For related tickets:**
    - **linear-searcher** - To find similar issues or past implementations
@@ -178,16 +196,33 @@ After structure approval:
    - Git commit, branch, and repository info
    - Researcher name
 
-2. **Write the plan** to `thoughts/shared/plans/YYYY-MM-DD-{ticket}-description.md`
-   - Format: `YYYY-MM-DD-{ticket}-description.md` where:
-     - YYYY-MM-DD is today's date
-     - {ticket} is the ticket number (omit if no ticket)
-     - description is a brief kebab-case description
-   - Examples:
-     - With ticket: `2025-01-08-PROJ-1234-parent-child-tracking.md`
-     - Without ticket: `2025-01-08-improve-error-handling.md`
+2. **Determine the filepath** for your plan document:
+   - **Path pattern**:
+     `thoughts/shared/plans/YYYY-MM-DD-{ticket}-description.md`
+   - **Important**: This path is relative to your CURRENT working directory (the
+     project repo), NOT the thoughts repo root
+   - The `thoughts/` directory in your current repo is a symlink to the correct
+     location in the central thoughts repo
+   - When using the Write tool, construct the full absolute path:
+     `<current_working_directory>/thoughts/shared/plans/...`
+   - **Path components**:
+     - YYYY-MM-DD: today's date
+     - {ticket}: ticket number (omit if no ticket)
+     - description: brief kebab-case description
+   - **Examples** (full paths relative to current repo):
+     - With ticket:
+       `thoughts/shared/plans/2025-01-08-PROJ-1234-parent-child-tracking.md`
+     - Without ticket:
+       `thoughts/shared/plans/2025-01-08-improve-error-handling.md`
 
-3. **Use this template structure**:
+3. **Write the plan** using the Write tool at the filepath determined in step 2:
+   - Use the full absolute path starting from your current working directory
+   - Example:
+     `/home/user/repos/project-name/thoughts/shared/plans/2025-01-08-PROJ-1234-description.md`
+   - The `thoughts/shared` symlink will resolve this to the correct location in
+     the central thoughts repo
+
+4. **Use this template structure**:
 
 ````markdown
 ---
@@ -215,7 +250,8 @@ type: implementation_plan
 
 ## Desired End State
 
-[A Specification of the desired end state after this plan is complete, and how to verify it]
+[A Specification of the desired end state after this plan is complete, and how
+to verify it]
 
 ### Key Discoveries:
 
@@ -241,8 +277,7 @@ type: implementation_plan
 
 #### 1. [Component/File Group]
 
-**File**: `path/to/file.ext`
-**Changes**: [Summary of changes]
+**File**: `path/to/file.ext` **Changes**: [Summary of changes]
 
 ```[language]
 // Specific code to add/modify
@@ -267,7 +302,9 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 - [ ] Edge case handling verified manually
 - [ ] No regressions in related features
 
-**Implementation Note**: After completing this phase and all automated verification passes, pause here for manual confirmation from the human that the manual testing was successful before proceeding to the next phase.
+**Implementation Note**: After completing this phase and all automated
+verification passes, pause here for manual confirmation from the human that the
+manual testing was successful before proceeding to the next phase.
 
 ---
 
@@ -312,8 +349,12 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
 ### Step 5: Sync and Review
 
 1. **Sync the thoughts directory**:
-   - Run `thoughts sync` to sync the newly created plan
-   - This ensures the plan is properly indexed and available
+   - After writing the plan document, run `thoughts sync` to:
+     - Create the searchable index (hard links for AI tools)
+     - Commit the changes to the central thoughts repo
+     - Push to the remote repository
+   - The `thoughts sync` command handles all git operations (add, commit, pull,
+     push) automatically
 
 2. **Present the draft plan location**:
 
@@ -355,8 +396,10 @@ Use the **test-runner** agent (runs in isolated context, returns summary only):
    - Read all context files COMPLETELY before planning
    - Research actual code patterns using parallel sub-tasks
    - Include specific file paths and line numbers
-   - Write measurable success criteria with clear automated vs manual distinction
-   - automated steps should use `make` whenever possible - for example `make -C {subdir} check` instead of `cd {subdir} && npm run fmt`
+   - Write measurable success criteria with clear automated vs manual
+     distinction
+   - automated steps should use `make` whenever possible - for example
+     `make -C {subdir} check` instead of `cd {subdir} && npm run fmt`
 
 4. **Be Practical**:
    - Focus on incremental, testable changes

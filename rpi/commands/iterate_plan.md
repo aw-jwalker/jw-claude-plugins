@@ -1,12 +1,15 @@
 ---
-description: Iterate on existing implementation plans with thorough research and updates
+description:
+  Iterate on existing implementation plans with thorough research and updates
 argument-hint: <thoughts/shared/plans/2025-01-01-feature.md>
 model: opus
 ---
 
 # Iterate Implementation Plan
 
-You are tasked with updating existing implementation plans based on user feedback. You should be skeptical, thorough, and ensure changes are grounded in actual codebase reality.
+You are tasked with updating existing implementation plans based on user
+feedback. You should be skeptical, thorough, and ensure changes are grounded in
+actual codebase reality.
 
 ## Initial Response
 
@@ -64,14 +67,16 @@ When this command is invoked:
 
 ### Step 2: Research If Needed
 
-**Only spawn research tasks if the changes require new technical understanding.**
+**Only spawn research tasks if the changes require new technical
+understanding.**
 
-If the user's feedback requires understanding new code patterns or validating assumptions:
+If the user's feedback requires understanding new code patterns or validating
+assumptions:
 
 1. **Create a research todo list** using TodoWrite
 
-2. **Spawn parallel sub-tasks for research**:
-   Use the right agent for each type of research:
+2. **Spawn parallel sub-tasks for research**: Use the right agent for each type
+   of research:
 
    **For code investigation:**
    - **codebase-locator** - To find relevant files
@@ -122,7 +127,8 @@ Get user confirmation before proceeding.
 2. **Update the frontmatter**:
    - Update `last_updated` to current date (YYYY-MM-DD format)
    - Update `last_updated_by` to current researcher
-   - Optionally update `status` if the plan state has changed (draft → ready, etc.)
+   - Optionally update `status` if the plan state has changed (draft → ready,
+     etc.)
 
 3. **Make focused, precise edits** to the existing plan:
    - Use the Edit tool for surgical changes
@@ -145,8 +151,12 @@ Get user confirmation before proceeding.
 ### Step 5: Sync and Review
 
 1. **Sync the updated plan**:
-   - Run `thoughts sync`
-   - This ensures changes are properly indexed
+   - After making edits to the plan, run `thoughts sync` to:
+     - Create the searchable index (hard links for AI tools)
+     - Commit the changes to the central thoughts repo
+     - Push to the remote repository
+   - The `thoughts sync` command handles all git operations (add, commit, pull,
+     push) automatically
 
 2. **Present the changes made**:
 
@@ -209,7 +219,8 @@ When updating success criteria, always maintain the two-category structure:
 
 1. **Automated Verification** (can be run by execution agents):
    - Commands that can be run: `make test`, `npm run lint`, etc.
-   - Prefer `make` commands: `make -C {subdir} check` instead of `cd {subdir} && npm run fmt`
+   - Prefer `make` commands: `make -C {subdir} check` instead of
+     `cd {subdir} && npm run fmt`
    - Specific files that should exist
    - Code compilation/type checking
 
