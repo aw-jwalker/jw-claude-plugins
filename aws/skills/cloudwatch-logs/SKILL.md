@@ -346,8 +346,15 @@ like:**
 - "Add this to the cloudwatch-logs examples"
 - "Document this investigation for the skill"
 
-**When you hear this, follow the Update Process below to create new files in the
-appropriate subdirectories.**
+**When you hear this, DO NOT EDIT SKILL.md. Instead, follow these steps:**
+
+1. Review the conversation to identify 1-3 key learnings
+2. Decide which subdirectory to use (examples/, templates/, mappings/, scripts/)
+3. **Use Write tool** to create NEW files in subdirectories
+4. ❌ **Do NOT use Edit tool on SKILL.md**
+
+Example: Create `examples/2026-02-04-bug-investigation.md` with the
+investigation details.
 
 ### What to Update (Create New Files)
 
