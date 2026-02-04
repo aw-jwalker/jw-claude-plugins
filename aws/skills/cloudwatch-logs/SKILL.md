@@ -336,6 +336,19 @@ After any significant CloudWatch log investigation, especially:
 - Error spike analysis (identified pattern)
 - Integration issues (tracked API calls)
 
+### How to Trigger Skill Improvement
+
+**After completing a CloudWatch investigation, the user will say something
+like:**
+
+- "Update the cloudwatch-logs skill with what we learned"
+- "Improve the /cloudwatch-logs skill based on this session"
+- "Add this to the cloudwatch-logs examples"
+- "Document this investigation for the skill"
+
+**When you hear this, follow the Update Process below to create new files in the
+appropriate subdirectories.**
+
 ### What to Update (Create New Files)
 
 #### 1. Add Examples (`examples/`)
