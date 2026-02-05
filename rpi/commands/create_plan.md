@@ -197,10 +197,18 @@ After structure approval:
    - Researcher name
 
 2. **Determine the filepath** for your plan document:
+
+   **CRITICAL - Write to Project Repo, NOT Auto Memory:**
+   - ✅ **Correct**: `<project_working_directory>/thoughts/shared/plans/...`
+   - ❌ **WRONG**: `~/.claude/projects/.../memory/thoughts/...` (auto memory)
+   - ❌ **WRONG**: `~/.claude/plugins/cache/...` (plugin cache)
+
+   Use `pwd` to get your current working directory, then append
+   `/thoughts/shared/plans/...`
    - **Path pattern**:
      `thoughts/shared/plans/YYYY-MM-DD-{ticket}-description.md`
    - **Important**: This path is relative to your CURRENT working directory (the
-     project repo), NOT the thoughts repo root
+     project repo), NOT the thoughts repo root or auto memory
    - The `thoughts/` directory in your current repo is a symlink to the correct
      location in the central thoughts repo
    - When using the Write tool, construct the full absolute path:
