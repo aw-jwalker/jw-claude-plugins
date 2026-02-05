@@ -1,0 +1,147 @@
+{
+  "description": "Query templates for bug investigation and debugging workflows",
+  "queries": [
+    {
+      "name": "search_by_serial_number",
+      "description": "Search for all log entries related to a specific hub/asset serial number",
+      "filter_pattern": "\"0006436\"",
+      "time_range_minutes": 60,
+      "use_cases": [
+        "Tracking a specific hub through the system",
+        "Finding when a particular serial was processed",
+        "Investigating user-reported issues for specific hardware"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --filter-pattern '\"0006436\"' --output json",
+      "post_processing": "jq -r '.events[] | \"\\(.timestamp | tonumber / 1000 | strftime(\"%Y-%m-%d %H:%M:%S UTC\")) - \\(.message)\"'"
+    },
+    {
+      "name": "search_by_method_call",
+      "description": "Find all invocations of a specific API method (e.g., addHub, removeHub)",
+      "filter_pattern": "\"addHub\"",
+      "time_range_minutes": 60,
+      "use_cases": [
+        "Finding when a specific operation was triggered",
+        "Analyzing request patterns for a method",
+        "Debugging method-specific issues"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --filter-pattern '\"addHub\"' --output json",
+      "post_processing": "jq -r '.events[] | select(.message | contains(\"addHub\")) | \"\\(.timestamp | tonumber / 1000 | strftime(\"%Y-%m-%d %H:%M:%S UTC\")) - \\(.message)\"'"
+    },
+    {
+      "name": "search_for_error_patterns",
+      "description": "Search for specific error patterns like malformed data or empty tuples",
+      "filter_pattern": "\"()_\"",
+      "time_range_minutes": 120,
+      "use_cases": [
+        "Finding malformed Hub strings like '()_0006436'",
+        "Detecting empty tuple conversions in Python lambdas",
+        "Identifying data validation failures"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --filter-pattern '\"()_\"' --output json",
+      "post_processing": "jq -r '.events[].message' | grep '()_'"
+    },
+    {
+      "name": "search_database_errors",
+      "description": "Find database constraint violations and SQL errors",
+      "filter_pattern": "\"foreign key constraint fails\"",
+      "time_range_minutes": 60,
+      "use_cases": [
+        "Finding foreign key constraint violations",
+        "Debugging database integrity issues",
+        "Tracking invalid data insertions"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --filter-pattern '\"foreign key constraint fails\"' --output json",
+      "post_processing": "jq -r '.events[] | \"\\(.timestamp | tonumber / 1000 | strftime(\"%Y-%m-%d %H:%M:%S UTC\")) - \\(.message)\"' | grep -A 2 -B 2 'foreign key'"
+    },
+    {
+      "name": "extract_request_body",
+      "description": "Extract request bodies from API Gateway events to see what data was sent",
+      "filter_pattern": null,
+      "time_range_minutes": 30,
+      "use_cases": [
+        "Seeing the exact payload sent in a request",
+        "Debugging parameter validation issues",
+        "Analyzing request patterns"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --output json",
+      "post_processing": "jq -r '.events[].message | fromjson? | select(.body != null) | .body'"
+    },
+    {
+      "name": "track_downstream_calls",
+      "description": "Find calls to downstream services (jobs-request-schedule, etc)",
+      "filter_pattern": "\"Syncing facility\"",
+      "time_range_minutes": 60,
+      "use_cases": [
+        "Tracking what Hub strings were sent to jobs lambda",
+        "Verifying downstream service calls were made",
+        "Debugging integration issues"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --filter-pattern '\"Syncing facility\"' --output json",
+      "post_processing": "jq -r '.events[].message' | grep 'Syncing facility'"
+    },
+    {
+      "name": "multi_pattern_grep",
+      "description": "Use grep after fetching to filter for multiple related patterns",
+      "filter_pattern": null,
+      "time_range_minutes": 60,
+      "use_cases": [
+        "Looking for multiple related keywords (error, partID, Syncing)",
+        "Complex filtering that AWS filter patterns don't support",
+        "Post-processing analysis of fetched logs"
+      ],
+      "example": "aws logs filter-log-events --log-group-name \"/aws/lambda/hub-prod-master\" --start-time $START_TIME --end-time $END_TIME --filter-pattern '\"0006436\"' --output json",
+      "post_processing": "jq -r '.events[].message' | grep -E '(error|partID|Syncing|HubDiagnostic|()_)'"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "bug_investigation_workflow",
+      "description": "Complete workflow for investigating a bug with CloudWatch logs",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Search production logs for the specific identifier (serial number, user ID, etc)",
+          "query": "search_by_serial_number"
+        },
+        {
+          "step": 2,
+          "action": "Parse JSON and filter for error patterns",
+          "query": "multi_pattern_grep"
+        },
+        {
+          "step": 3,
+          "action": "Save production logs for evidence",
+          "command": "aws logs filter-log-events ... > /tmp/prod_logs_$(date +%Y%m%d_%H%M).json"
+        },
+        {
+          "step": 4,
+          "action": "Reproduce in dev environment",
+          "query": "search_by_method_call"
+        },
+        {
+          "step": 5,
+          "action": "Compare dev and prod logs to confirm reproducibility",
+          "command": "diff <(jq -r '.events[].message' /tmp/prod_logs.json) <(jq -r '.events[].message' /tmp/dev_logs.json)"
+        }
+      ]
+    }
+  ],
+  "tips": {
+    "timestamp_formatting": {
+      "description": "Always format timestamps for readability using jq",
+      "example": "jq -r '.events[] | \"\\(.timestamp | tonumber / 1000 | strftime(\"%Y-%m-%d %H:%M:%S UTC\")) - \\(.message)\"'"
+    },
+    "saving_evidence": {
+      "description": "Save logs to /tmp with descriptive filenames for later analysis",
+      "example": "aws logs filter-log-events ... > /tmp/bug_reproduction_$(date +%Y%m%d_%H%M).json"
+    },
+    "parallel_searches": {
+      "description": "Search both prod and dev in parallel to save time",
+      "example": "Export both AWS profiles and run filter-log-events commands simultaneously"
+    },
+    "grep_patterns": {
+      "description": "Use grep -E for extended regex to search for multiple patterns",
+      "example": "grep -E '(error|partID|Syncing|()_)'"
+    }
+  }
+}

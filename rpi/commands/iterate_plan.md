@@ -131,6 +131,8 @@ Get user confirmation before proceeding.
      etc.)
 
 3. **Make focused, precise edits** to the existing plan:
+   - **IMPORTANT**: Ensure you're editing the plan in the project repo's
+     `thoughts/` directory, NOT in auto memory or cache
    - Use the Edit tool for surgical changes
    - Maintain the existing structure unless explicitly changing it
    - Keep all file:line references accurate

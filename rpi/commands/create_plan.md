@@ -528,6 +528,27 @@ tasks = [
 ]
 ```
 
+## Update Auto Memory with Key Learnings
+
+**After syncing the plan**, consider updating MEMORY.md with distilled lessons:
+
+**Extract to auto memory if you discovered:**
+
+- Project conventions ("This repo uses {pattern}")
+- Useful commands that work
+- Common mistakes to avoid
+- Build/test patterns
+- Architecture quirks
+
+**Example:**
+
+```markdown
+Plan (thoughts/): "50-line detailed implementation for datatable columns" Auto
+memory: "Datatable pattern: Use formatHardware{Type}() utilities"
+```
+
+**Don't duplicate the whole plan** - just extract the reusable knowledge.
+
 ## Example Interaction Flow
 
 ```
