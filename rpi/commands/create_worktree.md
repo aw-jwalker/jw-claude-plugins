@@ -36,6 +36,9 @@ on a branch without affecting your current working directory.
    The `thoughts` CLI handles:
    - Converting slashes to hyphens in filesystem paths
    - Creating the correct directory structure
+   - Copying `.claude/settings.local.json` from main repo (preserves
+     project-specific permissions)
+   - Auto-installing dependencies (pnpm/npm/yarn/bun)
    - Ensuring compatibility with `cdwt` command
 
 4. **Report success**:
@@ -87,6 +90,10 @@ By default, new branches are created from `dev`.
 - Worktrees are created at `~/wt/{project}/{branch}/`
 - Branch names with slashes (e.g., `feature/something`) are converted to hyphens
   in the filesystem path (`feature-something`)
+- Project-specific permissions (`.claude/settings.local.json`) are automatically
+  copied
+- Dependencies are automatically installed (no need to manually run
+  `pnpm install`)
 - The thoughts directory is synced between main repo and worktrees
 - Use `/clean_worktree` to remove worktrees when done
 - Use `/implement_plan_wt` if you want to create a worktree AND start
