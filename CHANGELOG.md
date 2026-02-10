@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - **BREAKING**: Restructured repository to support multiple plugins
 - Plugin renamed from `rpi-workflow` to `rpi` (commands now `rpi:create_plan` instead of `rpi_workflow:create_plan`)
-- Repository renamed from `rpi-workflow` to `assetwatch-claude-plugins`
+- Repository renamed from `rpi-workflow` to `jw-claude-plugins`
 - Commands `rpi-help` and `rpi-quickstart` renamed to `help` and `quickstart` (now `rpi:help`, `rpi:quickstart`)
 - All command references in documentation updated to include plugin prefix
 
@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file.
 ### Structure
 
 ```
-assetwatch-claude-plugins/
+jw-claude-plugins/
 ├── rpi/          # RPI plugin
 ├── jira/         # Jira plugin (coming soon)
 └── shared/       # Shared agents and commands

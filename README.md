@@ -1,6 +1,6 @@
-# AssetWatch Claude Plugins
+# JW Claude Plugins
 
-AssetWatch's Claude Code plugin collection.
+Personal Claude Code plugin collection.
 
 ## Requirements
 
@@ -21,13 +21,13 @@ From your terminal:
 
 ```bash
 # Add the marketplace
-claude plugin marketplace add AssetWatch1/assetwatch-claude-plugins
+claude plugin marketplace add aw-jwalker/jw-claude-plugins
 
 # Install the RPI plugin
-claude plugin install assetwatch-claude-plugins@rpi
+claude plugin install jw-claude-plugins@rpi
 
 # Or install the Jira plugin
-claude plugin install assetwatch-claude-plugins@jira
+claude plugin install jw-claude-plugins@jira
 ```
 
 ## Quick Install (In-Session)
@@ -35,8 +35,8 @@ claude plugin install assetwatch-claude-plugins@jira
 Or from within an active Claude Code session:
 
 ```
-/plugin marketplace add AssetWatch1/assetwatch-claude-plugins
-/plugin install assetwatch-claude-plugins@rpi
+/plugin marketplace add aw-jwalker/jw-claude-plugins
+/plugin install jw-claude-plugins@rpi
 ```
 
 ## Updating
@@ -44,14 +44,14 @@ Or from within an active Claude Code session:
 ### Manual Update
 
 ```bash
-claude plugin marketplace update assetwatch-claude-plugins
+claude plugin marketplace update jw-claude-plugins
 ```
 
 ### Enable Auto-Updates (Recommended)
 
 1. Run `/plugin` to open the plugin manager
 2. Select the **Marketplaces** tab
-3. Select `assetwatch-claude-plugins` marketplace
+3. Select `jw-claude-plugins` marketplace
 4. Choose **Enable auto-update**
 
 ---
@@ -200,16 +200,16 @@ Add to your project's `.claude/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {
-    "assetwatch-claude-plugins": {
+    "jw-claude-plugins": {
       "source": {
         "source": "github",
-        "repo": "AssetWatch1/assetwatch-claude-plugins"
+        "repo": "aw-jwalker/jw-claude-plugins"
       }
     }
   },
   "enabledPlugins": {
-    "assetwatch-claude-plugins@rpi": true,
-    "assetwatch-claude-plugins@jira": true
+    "jw-claude-plugins@rpi": true,
+    "jw-claude-plugins@jira": true
   }
 }
 ```

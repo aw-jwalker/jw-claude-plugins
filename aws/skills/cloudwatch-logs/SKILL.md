@@ -1,14 +1,14 @@
 ---
 name: cloudwatch-logs
 description:
-  Search CloudWatch logs for AssetWatch lambdas. Automatically transforms code
+  Search CloudWatch logs for lambdas. Automatically transforms code
   names to AWS lambda names, handles AWS profile switching, and manages timezone
   conversions.
 ---
 
 # CloudWatch Logs Search
 
-Search CloudWatch logs for AssetWatch Lambda functions with automatic name
+Search CloudWatch logs for Lambda functions with automatic name
 transformation, profile switching, and timezone handling.
 
 ## Quick Start
@@ -351,8 +351,8 @@ like:**
 **CRITICAL - File Locations:**
 
 - ✅ **Write to source repo**:
-  `/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/`
-- ❌ **NOT to cache**: `~/.claude/plugins/cache/assetwatch-claude-plugins/...`
+  `/Users/aw-jwalker/repos/jw-claude-plugins/aws/skills/cloudwatch-logs/`
+- ❌ **NOT to cache**: `~/.claude/plugins/cache/jw-claude-plugins/...`
 
 Changes to cache are lost. Always update the source repository.
 
@@ -364,9 +364,9 @@ Changes to cache are lost. Always update the source repository.
      need SKILL.md edits
 3. **Prefer subdirectories** for most learnings:
    - Use Write tool with full path:
-     `/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/examples/2026-02-04-description.md`
+     `/Users/aw-jwalker/repos/jw-claude-plugins/aws/skills/cloudwatch-logs/examples/2026-02-04-description.md`
    - Or:
-     `/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/templates/query-patterns.json`
+     `/Users/aw-jwalker/repos/jw-claude-plugins/aws/skills/cloudwatch-logs/templates/query-patterns.json`
 4. Only edit SKILL.md if core instructions truly need updating
 
 **Most session learnings go into subdirectories, not SKILL.md.**
@@ -446,15 +446,15 @@ After investigating a hub PartNumber validation bug, you should:
 ```bash
 # 1. Create an example document
 # Use Write tool with full source repo path:
-/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/examples/2026-02-03-hub-partnumber-validation.md
+/Users/aw-jwalker/repos/jw-claude-plugins/aws/skills/cloudwatch-logs/examples/2026-02-03-hub-partnumber-validation.md
 
 # 2. Add query patterns you used
 # Use Write tool with full source repo path:
-/home/aw-jwalker/repos/assetwatch-claude-plugins/aws/skills/cloudwatch-logs/templates/validation-debugging.json
+/Users/aw-jwalker/repos/jw-claude-plugins/aws/skills/cloudwatch-logs/templates/validation-debugging.json
 
 # 3. Do NOT write to cache
-# ❌ NOT: ~/.claude/plugins/cache/assetwatch-claude-plugins/...
-# ✅ YES: /home/aw-jwalker/repos/assetwatch-claude-plugins/...
+# ❌ NOT: ~/.claude/plugins/cache/jw-claude-plugins/...
+# ✅ YES: /Users/aw-jwalker/repos/jw-claude-plugins/...
 ```
 
 ### Reading From Subdirectories

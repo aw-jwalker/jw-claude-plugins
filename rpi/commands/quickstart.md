@@ -109,5 +109,5 @@ This runs tests in a separate context and shows only a summary with:
 ## Need Help?
 
 - **Quick reference**: `rpi:help`
-- **Full docs**: https://github.com/AssetWatch1/assetwatch-claude-plugins
-- **Report issues**: https://github.com/AssetWatch1/assetwatch-claude-plugins/issues
+- **Full docs**: https://github.com/aw-jwalker/jw-claude-plugins
+- **Report issues**: https://github.com/aw-jwalker/jw-claude-plugins/issues

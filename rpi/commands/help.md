@@ -113,5 +113,5 @@ your-project/
 
 ## Need More Help?
 
-- **Full documentation**: https://github.com/AssetWatch1/assetwatch-claude-plugins
+- **Full documentation**: https://github.com/aw-jwalker/jw-claude-plugins
 - **Quickstart guide**: `rpi:quickstart`

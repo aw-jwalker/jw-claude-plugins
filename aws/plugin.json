@@ -1,15 +1,14 @@
 {
   "name": "aws",
   "version": "1.0.0",
-  "description": "AssetWatch AWS utilities for CloudWatch, Lambda, S3, and other AWS services troubleshooting and management",
+  "description": "AWS utilities for CloudWatch, Lambda, S3, and other AWS services troubleshooting and management",
   "author": {
-    "name": "AssetWatch Engineering",
-    "email": "jwalker@assetwatch.com"
+    "name": "aw-jwalker",
+    "email": "aw-jwalker@users.noreply.github.com"
   },
-  "repository": "https://github.com/AssetWatch1/assetwatch-claude-plugins",
+  "repository": "https://github.com/aw-jwalker/jw-claude-plugins",
   "license": "MIT",
   "keywords": [
-    "assetwatch",
     "aws",
     "cloudwatch",
     "lambda",
