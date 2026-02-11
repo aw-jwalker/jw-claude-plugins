@@ -29,7 +29,7 @@ When the user wants to search CloudWatch logs, gather this information:
 **BEFORE transforming lambda names, read the mapping files:**
 
 - `mappings/fullstack-lambdas.json` - fullstack.assetwatch repository
-- `mappings/jobs-lambdas.json` - assetwatch-jobs repository
+- `mappings/jobs-lambdas.json` - backend.jobs repository (formerly assetwatch-jobs)
 - `mappings/api-lambdas.json` - API repositories (internal.api, external.api)
 
 These JSON files contain complete mappings with examples and edge cases.
@@ -43,7 +43,7 @@ These JSON files contain complete mappings with examples and edge cases.
 - Common: hub, asset, assetalert, facilities, sensor, monitoringpoint,
   inventory, hwqa
 
-**assetwatch-jobs:**
+**backend.jobs (formerly assetwatch-jobs):**
 
 - Pattern: `jobs_{name}/` → `jobs-{name-with-hyphens}-{env}-{branch}`
 - Example: `jobs_data_processor_gen2/` + prod + master =

@@ -1,7 +1,7 @@
 {
-  "repository": "assetwatch-jobs",
-  "last_updated": "2026-02-04",
-  "description": "Lambda name mappings for assetwatch-jobs repository",
+  "repository": "backend.jobs",
+  "last_updated": "2026-02-10",
+  "description": "Lambda name mappings for backend.jobs repository (formerly assetwatch-jobs)",
   "pattern": "Code folders are 'jobs_{name}/'. Replace underscores with hyphens: jobs-{name-with-hyphens}-{env}-{branch}",
   "mappings": [
     {
