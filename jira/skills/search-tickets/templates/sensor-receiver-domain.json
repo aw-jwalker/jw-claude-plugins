@@ -1,0 +1,59 @@
+{
+  "topic": "Sensor/receiver hardware management, schedules, and assignments",
+  "base_keywords": ["sensor", "receiver", "schedule", "monitoring point"],
+  "synonym_groups": [
+    ["sensor", "receiver", "device"],
+    ["schedule", "rate", "interval"],
+    ["swap", "replace", "change", "transfer"],
+    ["assign", "remove", "add", "install"],
+    ["duplicate", "two", "multiple", "double"],
+    ["facility", "customer", "site"],
+    ["monitoring point", "MP", "measurement point"]
+  ],
+  "effective_combos": [
+    {
+      "query": "sensor schedule missing swap IWA",
+      "what_it_finds": "Schedule not applied when sensors are swapped"
+    },
+    {
+      "query": "receiver schedule not applied replace IWA",
+      "what_it_finds": "Schedule bugs using receiver terminology"
+    },
+    {
+      "query": "sensor assigned two facilities duplicate IWA",
+      "what_it_finds": "Dual-assignment and duplicate sensor bugs"
+    },
+    {
+      "query": "monitoring point modal sensor IWA",
+      "what_it_finds": "Add/Edit MP modal related bugs"
+    },
+    {
+      "query": "Facility_Receiver MonitoringPoint_Receiver bad data IWA",
+      "what_it_finds": "DB integrity issues in sensor tables"
+    },
+    {
+      "query": "sensor removal reason missing guardrail IWA",
+      "what_it_finds": "Missing validation/warnings in sensor workflows"
+    },
+    {
+      "query": "sensor transfer track inventory assigned devices IWA",
+      "what_it_finds": "Transfer workflow and inventory tracking bugs"
+    },
+    {
+      "query": "sensor schedule not pushed default overwrite IWA",
+      "what_it_finds": "Schedule overwrite and default schedule bugs"
+    }
+  ],
+  "technical_terms": [
+    "Facility_Receiver",
+    "MonitoringPoint_Receiver",
+    "ReceiverSchedule",
+    "Facility_ReceiverHistory",
+    "UpdateMonitoringPointModal",
+    "useMonitoringPointSubmit.ts",
+    "MonitoringPointService.ts",
+    "Receiver_AddReceiverSchedule",
+    "MonitoringPoint_GetLastReceiverSchedule_v2"
+  ],
+  "project": "IWA"
+}
