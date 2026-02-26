@@ -43,10 +43,33 @@ Use JQL (`searchJiraIssuesUsingJql`) only for:
 - Filtering by structured fields: `status`, `type`, `priority`, `labels`
 - Final output queries
 
-### Run multiple searches in parallel
+### Rate Limit Awareness
 
-A single search will miss tickets. Run **5+ parallel Rovo searches** with
-varied keyword combinations to get comprehensive coverage. Think about:
+The Atlassian MCP API has rate limits that are easy to hit. **All
+Atlassian MCP calls share the same rate limit budget** — Rovo searches,
+`getJiraIssue`, `searchJiraIssuesUsingJql`, and `editJiraIssue` all
+count against it.
+
+**Rules to avoid throttling:**
+
+1. **Never fire more than 3 Atlassian MCP calls in parallel.** Stagger
+   searches into batches of 2-3.
+2. **Use bulk JQL instead of individual fetches.** To get details on 10
+   tickets, use one `searchJiraIssuesUsingJql` call with
+   `key in (IWA-1, IWA-2, ...)` instead of 10 separate `getJiraIssue`
+   calls. Set `maxResults` to cover all tickets (up to 100).
+3. **On 429 "Too Many Requests" errors, stop and wait.** Do not retry
+   immediately — this makes it worse. Wait 10-15 seconds before the
+   next call.
+4. **Don't retry failed calls in a loop.** If you get throttled, wait
+   once, then continue with a single call. If still throttled, tell
+   the user and pause.
+
+### Run multiple searches with staggering
+
+A single search will miss tickets. Run **5-8 Rovo searches** with
+varied keyword combinations, but **stagger them in batches of 2-3**
+to avoid rate limits. Think about:
 
 - Synonyms (sensor / receiver, schedule / rate, swap / replace / change)
 - Different angles (the UI action, the DB tables, the symptom, the root cause)
@@ -73,16 +96,24 @@ From the topic, generate **5-8 keyword combinations** that cover:
 - Technical references (e.g., "Facility_Receiver duplicate")
 - Symptom descriptions (e.g., "sensor assigned two facilities")
 
-### Step 3: Run Parallel Rovo Searches
+### Step 3: Run Rovo Searches (Staggered)
 
-Run 5+ searches in parallel using `mcp__claude_ai_Atlassian__search`:
+Run 5-8 searches using `mcp__claude_ai_Atlassian__search`, **in batches
+of 2-3 at a time** to avoid rate limits:
 
 ```
-Search 1: "sensor schedule missing swap IWA"
-Search 2: "receiver schedule not applied replace IWA"
-Search 3: "monitoring point modal sensor duplicate IWA"
-Search 4: "Facility_Receiver MonitoringPoint_Receiver bad data IWA"
-Search 5: "sensor assigned wrong facility inventory IWA"
+Batch 1 (parallel):
+  Search 1: "sensor schedule missing swap IWA"
+  Search 2: "receiver schedule not applied replace IWA"
+  Search 3: "monitoring point modal sensor duplicate IWA"
+
+Batch 2 (parallel, after batch 1 completes):
+  Search 4: "Facility_Receiver MonitoringPoint_Receiver bad data IWA"
+  Search 5: "sensor assigned wrong facility inventory IWA"
+
+Batch 3 (if needed):
+  Search 6: "sensor removal reason missing guardrail IWA"
+  Search 7: "sensor transfer inventory assigned devices IWA"
 ```
 
 Always append the project key (e.g., "IWA") to focus results.
@@ -92,10 +123,33 @@ Always append the project key (e.g., "IWA") to focus results.
 Merge results from all searches. Remove duplicates by ticket key.
 You will likely have 15-30 candidate tickets.
 
-### Step 5: Fetch Ticket Details
+### Step 5: Fetch Ticket Details (Bulk)
 
-For each candidate, fetch details using `getJiraIssue` with
-`issueIdOrKey` parameter (NOT `issueKey`). Check:
+**Prefer bulk JQL over individual fetches** to minimize API calls and
+avoid rate limits.
+
+**Primary method — bulk JQL fetch:**
+
+Use `searchJiraIssuesUsingJql` with a `key in (...)` query to fetch
+all candidates at once (up to 100 per call):
+
+```
+cloudId: "1d52b6e0-a650-4fcd-a003-6f250217a316"
+jql: "key in (IWA-123, IWA-456, IWA-789, ...)"
+fields: ["summary", "status", "issuetype", "priority"]
+maxResults: 50
+```
+
+If you have more than 50 candidates, split into 2 JQL calls (not 50
+individual `getJiraIssue` calls).
+
+**Fallback — individual fetch:**
+
+Only use `getJiraIssue` (with `issueIdOrKey` parameter, NOT `issueKey`)
+when you need the full description or fields not available through
+search. Limit to **3 parallel calls max**.
+
+**Check each ticket for:**
 
 - **Status** - Is it in the included statuses?
 - **Type** - Is it Bug/Task (or whatever the user specified)?
@@ -104,9 +158,6 @@ For each candidate, fetch details using `getJiraIssue` with
 Filter out tickets that don't match. Be aggressive about filtering
 status/type but conservative about relevance — let the user decide
 borderline cases.
-
-**Important parameter note**: The `getJiraIssue` tool uses
-`issueIdOrKey`, not `issueKey`.
 
 ### Step 6: Present Results
 
@@ -147,6 +198,7 @@ If yes:
 2. For each ticket, use `editJiraIssue` to add the label:
    - Use `issueIdOrKey` for the ticket key
    - Add the label to the existing labels (don't replace them)
+   - **Apply labels in batches of 3** to avoid rate limits
 3. Confirm completion and provide the label-based JQL:
    ```
    project = IWA AND labels = "sensor-schedule-bugs"
