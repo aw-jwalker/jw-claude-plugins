@@ -165,9 +165,10 @@ Show the filtered tickets in a table grouped by category/pattern:
 
 ```markdown
 ### Category Name
-| Ticket | Summary | Status | Priority | Type |
-|--------|---------|--------|----------|------|
-| IWA-123 | Description here | Ready for Development | P2 | Bug |
+
+| Ticket  | Summary          | Status                | Priority | Type |
+| ------- | ---------------- | --------------------- | -------- | ---- |
+| IWA-123 | Description here | Ready for Development | P2       | Bug  |
 ```
 
 Include:
@@ -206,6 +207,14 @@ If yes:
 
 This lets anyone find the group later without the static `key in` query.
 
+### Step 9: Optional Developer Investigation
+
+After identifying a set of tickets, you can investigate which developer
+should own each one based on git blame/log analysis.
+
+> Use the `jira:blame-tickets` skill with the ticket list to map tickets
+> to code owners via git blame and git log.
+
 ## Project Reference
 
 For project metadata (keys, statuses, components), see
@@ -231,7 +240,7 @@ in the subdirectories.
 **CRITICAL - File Locations:**
 
 - Write to source repo:
-  `C:\Users\JacksonWalker\repos\jw-claude-plugins\jira\skills\search-tickets\`
+  `jw-claude-plugins/jira/skills/search-tickets/`
 - NOT to cache: `~/.claude/plugins/cache/jw-claude-plugins/...`
 
 ### What to Capture
