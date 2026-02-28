@@ -1,0 +1,51 @@
+{
+  "repository": "katelynns-photo",
+  "last_updated": "2026-02-28",
+  "description": "Lambda name mappings for katelynns-photo (photography client management platform)",
+  "pattern": "Code folders are under backend/{name}. AWS name: katelynns-photo-{name} with underscores replaced by hyphens. No branch suffix — single Lambda per environment.",
+  "aws_accounts": {
+    "dev": {
+      "profile": "jw-dev",
+      "account_id": "908027391776"
+    },
+    "prod": {
+      "profile": "jw-prod",
+      "account_id": "588738582009"
+    }
+  },
+  "notes": [
+    "This project uses different AWS accounts/profiles than AssetWatch",
+    "There is no branch suffix — each environment has one Lambda (no per-branch deploys)",
+    "Log groups follow standard /aws/lambda/{function-name} pattern"
+  ],
+  "mappings": [
+    {
+      "code_folder": "backend/client_portal",
+      "aws_name": "katelynns-photo-client-portal",
+      "log_group": "/aws/lambda/katelynns-photo-client-portal",
+      "description": "FastAPI app (via Mangum) — album listing, file access, ZIP downloads. Client-facing authenticated API.",
+      "handler": "app.main.handler"
+    },
+    {
+      "code_folder": "backend/admin_api",
+      "aws_name": "katelynns-photo-admin-api",
+      "log_group": "/aws/lambda/katelynns-photo-admin-api",
+      "description": "Album registration, user assignment with expiration. Requires Admin Cognito group.",
+      "handler": "handler.handler"
+    },
+    {
+      "code_folder": "backend/contact_form",
+      "aws_name": "katelynns-photo-contact-form",
+      "log_group": "/aws/lambda/katelynns-photo-contact-form",
+      "description": "Contact form submission via SES",
+      "handler": "handler.handler"
+    },
+    {
+      "code_folder": "backend/zip_generator",
+      "aws_name": "katelynns-photo-zip-generator",
+      "log_group": "/aws/lambda/katelynns-photo-zip-generator",
+      "description": "Async ZIP generation triggered via SQS queue",
+      "handler": "handler.handler"
+    }
+  ]
+}
